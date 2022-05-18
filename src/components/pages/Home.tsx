@@ -9,9 +9,7 @@ function Home() {
         <section className={css.home_container}>
             <h1>Bem-Vindo ao <span>Costs</span></h1>
             <p>Comece a gerenciar seus projetos agora mesmo!</p>
-            {/* <LinkButton to="/newproject" text="criar projeto"></LinkButton> */}
-            {/* <LinkButton  to="/newproject" text="criar projeto" /> */}
-            <Link to={"/LinkButton"}>Teste</Link>
+            <LinkButton  to="/newprojects" text="criar projeto" />
             <img src={savings} alt="logo" />
         </section>
         </>

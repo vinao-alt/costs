@@ -1,7 +1,7 @@
 function Empresa() {
     return (
         <>
-        <p>Empresa</p>
+        <h1>EMPRESA</h1>
         </>
     )
 }

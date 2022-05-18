@@ -1,7 +1,7 @@
 function NewProjects() {
     return(
         <>
-        <p>New Projects</p>
+        <h1>NEW PROJECT</h1>
         </>
     )
 }
