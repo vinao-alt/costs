@@ -21,6 +21,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
+
   },
   "include": [
     "src" , "src/custom.d.ts"
