@@ -25,7 +25,7 @@ function Projeto() {
             })
             .catch((err) => console.log(err))
     }, [id])
-
+// aa
 
     return (
         <div>
