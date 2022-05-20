@@ -1,44 +1,63 @@
 import Message from "../layout/Message"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Container from "../layout/Container";
 import LinkButton from "../layout/LinkButton";
 import ProjectCard from "../project/ProjectCard";
 
 import css from "../pages/Projects.module.css"
 import { useState, useEffect } from "react";
+import { Project } from "../interfaces/Project";
+import Loading from "../layout/Loading";
 
 function Projects() {
 
-    // interface Projetos {
-    //     name: string,
-    //     budget: number,
-    //     category: {id:number, nome:string},
-    //     cost: number,
-    //     services: [],
-    //     id: number
-    // }
+    const [projects, setProjects] = useState<Project[]>([])
+    const [removeLoading, setRemoveLoading] = useState(false)
+    const [projectMessage, setProjectMessage] = useState('')
 
-    const [projects, setProjects] = useState([])
 
-    const location = useLocation() as { state: { message: string } }
-    let message = ""
-    if (location.state) {
-        message = location.state.message
+    interface CustomizedState { message: string }
+
+    const location = useLocation();
+    const state = location.state as CustomizedState;
+    let message = ''
+
+    if (state) {
+        message = state.message
     }
 
     useEffect(() => {
-        fetch("http://localhost:5000/projects", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then((resp) => resp.json())
-            .then((data) => {
-                console.log("projetos: ", data)
-                setProjects(data)
+        setTimeout(() => {
+            fetch('http://localhost:5000/projects', {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                },
             })
-            .catch((err) => console.log(err))
+                .then((resp) => resp.json())
+                .then((data) => {
+                    const projetos: Project[] = data
+                    setProjects(projetos)
+                    setRemoveLoading(true)
+                    console.log(data)
+                })
+                .catch((err) => console.log(err))
+        }, 500)
     }, [])
+
+    function removeProject(id) {
+        fetch(`http://localhost:5000/projects/${id}`, {
+            method:'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            },
+        }).then(resp => resp.json())
+        .then(() => {
+            setProjects(projects.filter((project) => project.id !== id))
+            setProjectMessage('Projeto removido com sucesso!')
+        })
+        .catch((err) => console.log(err))
+    }
 
     return (
         <div className={css.project_container}>
@@ -46,14 +65,25 @@ function Projects() {
                 <h1>Meus Projetos</h1>
                 <LinkButton to="/newprojects" text="criar projeto" />
             </div>
-            {/* <Message msg="alguma mensagem" type="success"/> */}
-            {message && <Message type="success" msg={message} />}
+            <div>
+                {message && <Message type="success" msg={message} />}
+                {projectMessage && <Message type="success" msg={projectMessage} />}
+            </div>
             <Container customClass="start">
-                {projects.length > 0 && projects.map((project) =>
-                    <div key={project}>
-                        <ProjectCard id={project} name={project} budget={project} />
-                    </div>
-                )}
+                {projects.map((item) => (
+                    <ProjectCard
+                        id={item.id}
+                        key={item.id}
+                        name={item.name}
+                        budget={item.budget}
+                        category={item.category}
+                        handleRemove={removeProject}
+                    />
+                ))}
+                {!removeLoading && <Loading />}
+                {removeLoading && projects.length === 0 && (
+                    <p>Não ha projetos cadastrados!</p>
+                ) }
             </Container>
         </div>
     )
