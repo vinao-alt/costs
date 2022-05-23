@@ -39,7 +39,6 @@ function Projects() {
                     const projetos: Project[] = data
                     setProjects(projetos)
                     setRemoveLoading(true)
-                    console.log(data)
                 })
                 .catch((err) => console.log(err))
         }, 500)

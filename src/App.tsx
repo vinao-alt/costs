@@ -8,7 +8,8 @@ import Projetos from './components/pages/Projects';
 import Container from './components/layout/Container';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Projeto from './components/pages/Projeto';
+import Projeto from './components/pages/Edit';
+import Edit from './components/pages/Edit';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           <Route path='/empresa' element={<Empresa />}></Route>
           <Route path='/newprojects' element={<NewProjects />}></Route>
           <Route path='/contato' element={<Contato />}></Route>
-          <Route path='/projeto/:id' element={<Projeto />}></Route>
+          <Route path='/edit/:id' element={<Edit  />}></Route>
         </Routes>
       </Container>
       <Footer/>

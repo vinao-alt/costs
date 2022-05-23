@@ -20,7 +20,6 @@ function NewProjects() {
             body: JSON.stringify(project),
         }).then((resp) => resp.json())
         .then((data) => {
-            console.log("data: ", data)
             history('/projetos', {state:{message: 'Projeto criado com sucesso'}})
         })
             .catch(err => console.log("erro:", err))

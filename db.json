@@ -1,17 +1,6 @@
 {
   "projects": [
     {
-      "name": "projeto 1",
-      "budget": "100",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 1
-    },
-    {
       "name": "projeto 2",
       "budget": "300",
       "category": {
@@ -60,11 +49,44 @@
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "name": "App Controle Mesa de ping pong",
-      "budget": "0",
+      "name": "App Controle Mesa de ping pongers",
+      "budget": "10",
       "cost": 0,
       "services": [],
       "id": 6
+    },
+    {
+      "name": "teste update",
+      "budget": "10000",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 7
+    },
+    {
+      "name": "projeto 5",
+      "budget": "5000",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 8
+    },
+    {
+      "name": "site profuso",
+      "budget": "600",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 9
     }
   ],
   "categories": [
