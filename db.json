@@ -58,6 +58,39 @@
         }
       ],
       "id": 3
+    },
+    {
+      "name": "klakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasjklakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasj",
+      "budget": "4",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 4,
+      "services": [
+        {
+          "description": "a",
+          "cost": "3",
+          "name": "klçkçlkçl",
+          "id": "e4f58ac3-502a-473f-9297-744178fa4e56"
+        },
+        {
+          "name": "klakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasj",
+          "description": "klakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasj",
+          "cost": "1",
+          "id": "56691a5d-02fb-4974-91ff-839117bd9151"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 5
     }
   ],
   "categories": [
