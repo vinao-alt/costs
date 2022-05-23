@@ -1,4 +1,4 @@
-import { Servico } from "../interfaces/Servico"
+import { Servico } from "./Service"
 
 export interface Project {
     id: number,

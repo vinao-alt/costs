@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 
+import css from './ProjectForm.module.css'
+
 import Input from '../form/Input'
 import Select from '../form/Select'
 import SubmitButton from '../form/SubmitButton'
-import css from './ProjectForm.module.css'
-
-// interface FormProps { handleSubmit?, btnText?, projectData?}
 
 function ProjectForm({ handleSubmit, btnText, projectData}) {
 

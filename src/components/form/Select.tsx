@@ -1,9 +1,5 @@
 import css from './Select.module.css'
 
-//3 formas de deixar os valores opcionais
-
-// function Select({text, name, options, handleOnChange, value}:{text:string|undefined})
-// function Select({text?:string, name?:string, options?:unknown, handleOnChange?:unknown, value?:string})
 interface SelectProps { text?: string, name?: string, options?, handleOnChange?, value?: string }
 
 function Select({ text, name, options, handleOnChange, value }: SelectProps) {

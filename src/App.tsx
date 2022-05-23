@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Contato from './components/pages/Contato';
-import Empresa from './components/pages/Empresa';
-import Home from './components/pages/Home';
-import NewProjects from './components/pages/NewProjects';
-import Projetos from './components/pages/Projects';
-
 import Container from './components/layout/Container';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Projeto from './components/pages/Edit';
+
+import Projects from './components/pages/Projects';
+import Company from './components/pages/Company';
+import Contact from './components/pages/Contact';
 import Edit from './components/pages/Edit';
+import NewProjects from './components/pages/NewProjects';
+import Home from './components/pages/Home';
 
 
 function App() {
@@ -19,10 +18,10 @@ function App() {
       <Container customClass="minHeight">
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/projetos' element={<Projetos />}></Route>
-          <Route path='/empresa' element={<Empresa />}></Route>
+          <Route path='/projects' element={<Projects />}></Route>
+          <Route path='/company' element={<Company />}></Route>
           <Route path='/newprojects' element={<NewProjects />}></Route>
-          <Route path='/contato' element={<Contato />}></Route>
+          <Route path='/contact' element={<Contact />}></Route>
           <Route path='/edit/:id' element={<Edit  />}></Route>
         </Routes>
       </Container>

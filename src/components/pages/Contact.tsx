@@ -1,4 +1,4 @@
-function Contato() {
+function Contact() {
     return (
         <>
         <h1>CONTATO</h1>
@@ -6,4 +6,4 @@ function Contato() {
     )
 }
 
-export default Contato
+export default Contact

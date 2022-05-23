@@ -1,18 +1,20 @@
 import css from "./Edit.module.css";
 
-import { pase, v4 as uuidv4 } from 'uuid'
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import Loading from "../layout/Loading";
 import Container from "../layout/Container";
-import ProjectCard from "../project/ProjectCard";
-import { Project } from "../interfaces/Project";
-import ProjectForm from "../project/ProjectForm";
 import Message from "../layout/Message";
+
+import { Project } from "../interfaces/Project";
+import { Servico } from "../interfaces/Service";
+
 import ServiceForm from "../services/ServiceForm";
 import ServiceCard from '../services/ServiceCard'
-import { servicesVersion } from "typescript";
-import { Servico } from "../interfaces/Servico";
+
+import ProjectForm from "../project/ProjectForm";
+
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid'
 
 function Edit() {
   const { id } = useParams();
@@ -33,9 +35,6 @@ function Edit() {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          // console.log("data da pagina de ediçao: ", data);
-          // setProject(data);
-          // setServices(data.services)
           const projetos: Servico[] = data
           setProject(data)
           setServices(data.services)
@@ -43,8 +42,6 @@ function Edit() {
         .catch((err) => console.log(err));
     }, 300);
   }, [id]);
-
-  console.log("services: ", services)
 
   function editPost(project) {
     setMessage("");
@@ -153,7 +150,7 @@ function Edit() {
           <Container customClass="column">
             {message && <Message type={type} msg={message} />}
             <div className={css.details_container}>
-              <h1>Projeto: {project.name}</h1>
+              <h1>{project.name}</h1>
               <button className={css.btn} onClick={toggleProjectForm}>
                 {!showProjectForm ? "Editar Projeto" : "Fechar"}
               </button>

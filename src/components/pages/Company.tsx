@@ -1,4 +1,4 @@
-function Empresa() {
+function Company() {
     return (
         <>
         <h1>EMPRESA</h1>
@@ -6,4 +6,4 @@ function Empresa() {
     )
 }
 
-export default Empresa
+export default Company

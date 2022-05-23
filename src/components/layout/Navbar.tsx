@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom"
 
-// import Contato from "../pages/Contato"
-// import Empresa from "../pages/Empresa"
-// import Home from "../pages/Home"
-// import NewProjects from "../pages/NewProjects"
-
-
 import Container from './Container'
 import css from './Navbar.module.css'
 import logo_img from '../img/costs_logo.png'
@@ -22,19 +16,23 @@ function Navbar() {
                         <li className={css.item}>
                             <Link to="/"> Home </Link>
                         </li>
+
                         <li className={css.item}>
-                            <Link to="/projetos"> Projetos </Link>
+                            <Link to="/projects"> Projetos </Link>
                         </li>
+
                         <li className={css.item}>
-                            <Link to="/empresa"> Empresa </Link>
+                            <Link to="/company"> Empresa </Link>
 
                         </li>
+
                         <li className={css.item}>
                             <Link to="/newprojects"> Novo Projeto </Link>
 
                         </li>
+                        
                         <li className={css.item}>
-                            <Link to="/contato"> Contato </Link>
+                            <Link to="/contact"> Contato </Link>
 
                         </li>
                     </ul>

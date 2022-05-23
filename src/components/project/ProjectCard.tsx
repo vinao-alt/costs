@@ -1,7 +1,8 @@
 import css from './ProjectCard.module.css'
-import { Project } from '../interfaces/Project'
-import { BsPencil, BsFillTrashFill } from 'react-icons/bs'
+
 import { Link } from 'react-router-dom'
+
+import { BsPencil, BsFillTrashFill } from 'react-icons/bs'
 
 
 
