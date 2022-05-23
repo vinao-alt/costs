@@ -1,96 +1,15 @@
 {
   "projects": [
     {
-      "name": "projeto teste 1",
-      "budget": "100",
+      "name": "projeto cobaia",
+      "budget": "5000",
       "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
+        "id": "1",
+        "name": "Infra"
       },
-      "cost": 21,
-      "services": [
-        {
-          "name": "serviço 1 ",
-          "cost": "10",
-          "description": "testar",
-          "id": "7c5a2e27-7f42-44b8-b9ea-c9b50081fb18"
-        },
-        {
-          "name": "qaaa",
-          "cost": "11",
-          "description": "a",
-          "id": "597aa8b6-b36e-4609-87bf-3f2e8d6de5d1"
-        }
-      ],
+      "cost": 0,
+      "services": [],
       "id": 1
-    },
-    {
-      "name": "projeto teste 2",
-      "budget": "100",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 2
-    },
-    {
-      "name": "App Controle Mesa de ping pong",
-      "budget": "500",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 101,
-      "services": [
-        {
-          "name": "teste",
-          "cost": "100",
-          "description": "as",
-          "id": "c3ca9df4-59b4-4f39-8801-9b322d16698c"
-        },
-        {
-          "name": "b",
-          "description": "'a",
-          "cost": "1",
-          "id": "22244a56-4524-4950-abaa-c8253c9f155c"
-        }
-      ],
-      "id": 3
-    },
-    {
-      "name": "klakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasjklakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasj",
-      "budget": "4",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 4,
-      "services": [
-        {
-          "description": "a",
-          "cost": "3",
-          "name": "klçkçlkçl",
-          "id": "e4f58ac3-502a-473f-9297-744178fa4e56"
-        },
-        {
-          "name": "klakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasj",
-          "description": "klakdksçdkçsakdsadksaçdl saçdklsa klçdksaç kdlçsllçllçdaaskla asadask lçakaçldkaskdlakdçlsakdçlsakdçlssd jdklsajdklsadskadsajdkjsa dsajdklsajdklsajkldjsaskldjsadskaj ksssssasj",
-          "cost": "1",
-          "id": "56691a5d-02fb-4974-91ff-839117bd9151"
-        }
-      ],
-      "id": 4
-    },
-    {
-      "category": {
-        "id": "3",
-        "name": "Design"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 5
     }
   ],
   "categories": [

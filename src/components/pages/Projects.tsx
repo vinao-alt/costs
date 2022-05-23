@@ -72,6 +72,7 @@ function Projects() {
                 {message && <Message type="success" msg={message} />}
                 {projectMessage && <Message type="success" msg={projectMessage} />}
             </div>
+
             <Container customClass="start">
                 {projects.map((item) => (
                     <ProjectCard
