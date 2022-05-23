@@ -1,92 +1,69 @@
 {
   "projects": [
     {
-      "name": "projeto 2",
-      "budget": "300",
+      "name": "projeto teste 1",
+      "budget": "100",
       "category": {
-        "id": "3",
-        "name": "Design"
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 31,
+      "services": [
+        {
+          "name": "serviço 1 ",
+          "cost": "10",
+          "description": "testar",
+          "id": "7c5a2e27-7f42-44b8-b9ea-c9b50081fb18"
+        },
+        {
+          "name": "qaaa",
+          "cost": "11",
+          "description": "a",
+          "id": "597aa8b6-b36e-4609-87bf-3f2e8d6de5d1"
+        },
+        {
+          "name": "Contratar Dev Front-end",
+          "cost": "10",
+          "description": "a",
+          "id": "f7abddea-bb0c-4799-9bea-3cbe8c46ea82"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "projeto teste 2",
+      "budget": "100",
+      "category": {
+        "id": "1",
+        "name": "Infra"
       },
       "cost": 0,
       "services": [],
       "id": 2
     },
     {
-      "name": "projeto 3",
-      "budget": "5000",
+      "name": "App Controle Mesa de ping pong",
+      "budget": "500",
       "category": {
-        "id": "4",
-        "name": "Planejamento"
+        "id": "2",
+        "name": "Desenvolvimento"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 101,
+      "services": [
+        {
+          "name": "teste",
+          "cost": "100",
+          "description": "as",
+          "id": "c3ca9df4-59b4-4f39-8801-9b322d16698c"
+        },
+        {
+          "name": "b",
+          "description": "'a",
+          "cost": "1",
+          "id": "22244a56-4524-4950-abaa-c8253c9f155c"
+        }
+      ],
       "id": 3
-    },
-    {
-      "name": "projeto 4",
-      "budget": "30",
-      "category": {
-        "id": "3",
-        "name": "Design"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 4
-    },
-    {
-      "name": "teste",
-      "budget": "1",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 5
-    },
-    {
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "name": "App Controle Mesa de ping pongers",
-      "budget": "10",
-      "cost": 0,
-      "services": [],
-      "id": 6
-    },
-    {
-      "name": "teste update",
-      "budget": "10000",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 7
-    },
-    {
-      "name": "projeto 5",
-      "budget": "5000",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 8
-    },
-    {
-      "name": "site profuso",
-      "budget": "600",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 9
     }
   ],
   "categories": [

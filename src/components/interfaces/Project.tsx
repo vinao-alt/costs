@@ -1,3 +1,5 @@
+import { Servico } from "../interfaces/Servico"
+
 export interface Project {
     id: number,
     budget: number,
@@ -6,6 +8,6 @@ export interface Project {
         id: number,
         name: string
     }
-    cost?: number,
-    services?: [],
+    cost: number,
+    services: Servico[],
 }
