@@ -7,7 +7,7 @@
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 31,
+      "cost": 21,
       "services": [
         {
           "name": "serviço 1 ",
@@ -20,12 +20,6 @@
           "cost": "11",
           "description": "a",
           "id": "597aa8b6-b36e-4609-87bf-3f2e8d6de5d1"
-        },
-        {
-          "name": "Contratar Dev Front-end",
-          "cost": "10",
-          "description": "a",
-          "id": "f7abddea-bb0c-4799-9bea-3cbe8c46ea82"
         }
       ],
       "id": 1
