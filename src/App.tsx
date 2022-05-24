@@ -10,11 +10,15 @@ import Edit from './components/pages/Edit';
 import NewProjects from './components/pages/NewProjects';
 import Home from './components/pages/Home';
 
+import {ToastContainer,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css';
+
+
 
 function App() {
   return (
     <Router>
-      <Navbar/>
+      <Navbar />
       <Container customClass="minHeight">
         <Routes>
           <Route path='/' element={<Home />}></Route>
@@ -22,10 +26,11 @@ function App() {
           <Route path='/company' element={<Company />}></Route>
           <Route path='/newprojects' element={<NewProjects />}></Route>
           <Route path='/contact' element={<Contact />}></Route>
-          <Route path='/edit/:id' element={<Edit  />}></Route>
+          <Route path='/edit/:id' element={<Edit />}></Route>
         </Routes>
+        <ToastContainer />
       </Container>
-      <Footer/>
+      <Footer />
     </Router>
   );
 }

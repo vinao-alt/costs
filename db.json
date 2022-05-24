@@ -1,52 +1,5 @@
 {
-  "projects": [
-    {
-      "name": "teste",
-      "budget": "20",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 12,
-      "services": [
-        {
-          "name": "teste",
-          "cost": "1",
-          "description": "k",
-          "id": "bf8a0709-67bb-4e3a-90ae-c1013973fd69"
-        },
-        {
-          "name": "aa",
-          "cost": "11",
-          "description": "a",
-          "id": "3ed16e8a-890b-44a8-8758-fdbb17028325"
-        }
-      ],
-      "id": 1
-    },
-    {
-      "name": "App Controle Mesa de ping pong kkkkkkkkkkkkkkkkkk",
-      "budget": "5000",
-      "cost": 0,
-      "services": [],
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "id": 2
-    },
-    {
-      "name": "teste",
-      "budget": "5",
-      "category": {
-        "id": "1",
-        "name": "Infra"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 3
-    }
-  ],
+  "projects": [],
   "categories": [
     {
       "id": 1,

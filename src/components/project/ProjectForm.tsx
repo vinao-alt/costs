@@ -5,6 +5,7 @@ import css from './ProjectForm.module.css'
 import Input from '../form/Input'
 import Select from '../form/Select'
 import SubmitButton from '../form/SubmitButton'
+import { toast } from 'react-toastify'
 
 function ProjectForm({ handleSubmit, btnText, projectData}) {
 
@@ -41,11 +42,6 @@ function ProjectForm({ handleSubmit, btnText, projectData}) {
             },
         })
     }
-
-    if (project.budget < 0 || project.cost < 0) {
-        alert("DIGITE UM VALOR MAIOR QUE ZERO!!")
-    }
-    
 
     return (
         <>

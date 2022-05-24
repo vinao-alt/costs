@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+
+
 
 import ProjectForm from "../project/ProjectForm"
 
 import css from './NewProjects.module.css'
 
 function NewProjects() {
+
 
     const history = useNavigate()
 
@@ -26,9 +30,8 @@ function NewProjects() {
                 })
                 .catch(err => console.log("erro:", err))
         } else {
-            alert("Preencha o campo SELECT antes de continuar!")
+            toast.error("Escolha uma categoria!");
         }
-
 
 
     }
@@ -38,6 +41,8 @@ function NewProjects() {
             <h1>Criar Projeto</h1>
             <p>Crie seu projeto para depois adicionar os serviços!</p>
             <ProjectForm btnText="Criar Projeto" handleSubmit={createPost} projectData />
+
+
         </div>
     )
 }
