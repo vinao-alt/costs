@@ -42,6 +42,11 @@ function ProjectForm({ handleSubmit, btnText, projectData}) {
         })
     }
 
+    if (project.budget < 0 || project.cost < 0) {
+        alert("DIGITE UM VALOR MAIOR QUE ZERO!!")
+    }
+    
+
     return (
         <>
             <form className={css.form} onSubmit={submit}>

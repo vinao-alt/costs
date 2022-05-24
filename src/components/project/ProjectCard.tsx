@@ -16,7 +16,7 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
         <div className={css.project_card}>
             <h4>{name}</h4>
             <p>
-                <span>Orçamento: </span> R${budget}
+                <span>Orçamento: </span>{budget.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
             </p>
             <p className={css.category_text}>
                 <span className={`${css[category.name.toLowerCase()]}`}></span> {category.name}

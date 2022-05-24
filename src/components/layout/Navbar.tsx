@@ -4,42 +4,45 @@ import Container from './Container'
 import css from './Navbar.module.css'
 import logo_img from '../img/costs_logo.png'
 function Navbar() {
-    return (
-        <>
-            <nav className={css.navbar}>
-                <Container>
-                    <Link to={"/"}>
-                        <img src={logo_img} alt="logo" />
-                    </Link>
 
-                    <ul className={css.list}>
-                        <li className={css.item}>
-                            <Link to="/"> Home </Link>
-                        </li>
+    function changeColor() {
+        
+    }
 
-                        <li className={css.item}>
-                            <Link to="/projects"> Projetos </Link>
-                        </li>
+return (
+    <>
+        <nav className={css.navbar}>
+            <Container>
+                <Link to={"/"}>
+                    <img src={logo_img} alt="logo" />
 
-                        <li className={css.item}>
-                            <Link to="/company"> Empresa </Link>
+                </Link>
 
-                        </li>
+                <ul className={css.list}>
+                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
+                        <Link to="/"> Home </Link>
+                    </li>
 
-                        <li className={css.item}>
-                            <Link to="/newprojects"> Novo Projeto </Link>
+                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
+                        <Link to="/projects"> Projetos </Link>
+                    </li>
 
-                        </li>
-                        
-                        <li className={css.item}>
-                            <Link to="/contact"> Contato </Link>
+                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
+                        <Link to="/company"> Empresa </Link>
 
-                        </li>
-                    </ul>
-                </Container>
-            </nav>
-        </>
-    )
+                    </li>
+
+                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
+                        <Link to="/newprojects"> Novo Projeto </Link>
+                    </li>
+
+                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
+                        <Link to="/contact"> Contato </Link>
+                    </li>
+                </ul>
+            </Container>
+        </nav>
+    </>
+)
 }
-
 export default Navbar

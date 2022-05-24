@@ -12,7 +12,7 @@ function ServiceCard({id, name, cost, description, handleRemove}) {
         <div className={css.project_card}>
             <h4>{name}</h4>
             <p>
-                <span>Custo Total</span> R$ {cost}
+                <span>Custo Total</span> {cost.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
             </p>
             <p>{description}</p>
             <div className={css.project_card_actions}>

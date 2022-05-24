@@ -85,6 +85,13 @@ function Edit() {
       return false
     }
 
+    if (lastService.cost < 0 || newCost < 0) {
+      setMessage("Valor Negativo! Corrija o valor do serviço")
+      setType('error')
+      project.services.pop()
+      return false
+    }
+
     //add service cost to project total cost
     project.cost = newCost
 
@@ -163,12 +170,13 @@ function Edit() {
 
                   <p>
                     <span>Total de Orçamento: </span>
-                    R${project.budget}
+                    {/* {project.budget.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} */}
+                    {project.budget}
                   </p>
 
                   <p>
                     <span>Total Utilizado: </span>
-                    R${project.cost}
+                    {project.cost.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
                   </p>
                 </div>
               ) : (

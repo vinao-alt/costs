@@ -28,3 +28,7 @@
     font: bold 25pt "Ubuntu";
     color: white;
 }
+
+.current {
+    color: red;
+}
