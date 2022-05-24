@@ -1,25 +1,50 @@
 {
   "projects": [
+    {
+      "name": "aa",
+      "budget": "1",
+      "cost": 1,
+      "services": [
+        {
+          "name": "teste",
+          "cost": "1",
+          "description": "qa",
+          "id": "a1210975-74ca-438a-aee0-9760bb5c8bec"
+        }
+      ],
+      "category": {
+        "id": "2",
+        "name": "Infra"
+      },
+      "id": 1
+    },
+    {
+      "name": "a",
+      "budget": "5000",
+      "cost": 0,
+      "services": [],
+      "category": {
+        "id": "2",
+        "name": "Infra"
+      },
+      "id": 2
+    }
   ],
   "categories": [
     {
       "id": 1,
-      "name": "Sem categoria"
-    },
-    {
-      "id": 2,
       "name": "Infra"
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Desenvolvimento"
     },
     {
-      "id": 4,
+      "id": 3,
       "name": "Design"
     },
     {
-      "id": 5,
+      "id": 4,
       "name": "Planejamento"
     }
   ]
