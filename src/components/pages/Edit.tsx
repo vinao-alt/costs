@@ -15,6 +15,7 @@ import ProjectForm from "../project/ProjectForm";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid'
+import { toast } from "react-toastify";
 
 function Edit() {
   const { id } = useParams();
@@ -44,10 +45,23 @@ function Edit() {
   }, [id]);
 
   function editPost(project) {
-    setMessage("");
+    setMessage('');
+
     // budget validation
-    if (project.budget < project.cost) {
+    if (project.budget < project.cost || project.budget == null || project.budget == "") {
       setMessage("O orçamento não pode ser menor que o custo do projeto!");
+      setType("error");
+      return false;
+    }
+
+    if (project.name == "" || project.name == null) {
+      setMessage("O projeto precisa ter um nome");
+      setType("error");
+      return false;
+    }
+
+    if (!project.category) {
+      setMessage("Selecione uma categoria");
       setType("error");
       return false;
     }
@@ -81,14 +95,20 @@ function Edit() {
     if (newCost > parseFloat(project.budget)) {
       setMessage("Orçamento ultrapassado! verifique o valor do serviço")
       setType('error')
-      project.services.pop()
+      // project.services.pop()
       return false
     }
 
     if (lastService.cost < 0 || newCost < 0) {
       setMessage("Valor Negativo! Corrija o valor do serviço")
       setType('error')
-      project.services.pop()
+      // project.services.pop()
+      return false
+    }
+
+    if (project.name == null || project.name == "") {
+      setMessage("O serviço precisa de um nome!")
+      setType('error')
       return false
     }
 
@@ -149,7 +169,6 @@ function Edit() {
   }
 
 
-
   return (
     <>
       {project?.name ? (
@@ -170,7 +189,6 @@ function Edit() {
 
                   <p>
                     <span>Total de Orçamento: </span>
-                    {/* {project.budget.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} */}
                     {project.budget}
                   </p>
 

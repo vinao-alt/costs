@@ -20,7 +20,7 @@ function Input({ type, text, name, placeholder, handleOnChange, value }:InputPro
                     placeholder={placeholder}
                     onChange={handleOnChange}
                     value={value}
-                    required/>
+                    />
             </div>
         </>
     )

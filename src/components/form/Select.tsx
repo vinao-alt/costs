@@ -3,6 +3,7 @@ import css from "./Select.module.css";
 // interface SelectProps { text: string, name: string, options, handleOnChange, value: string }
 
 function Select({ text, name, options, handleOnChange, value }) {
+
   return (
     <div className={css.form_control}>
       <label htmlFor={name}>{text}:</label>

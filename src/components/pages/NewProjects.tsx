@@ -1,50 +1,67 @@
-import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
+import ProjectForm from "../project/ProjectForm";
 
-
-import ProjectForm from "../project/ProjectForm"
-
-import css from './NewProjects.module.css'
+import css from "./NewProjects.module.css";
 
 function NewProjects() {
+  const history = useNavigate();
 
+  function createPost(project) {
+    //initialize cost and services
 
-    const history = useNavigate()
+    if (
+      project.category &&
+      project.budget >= 0 &&
+      project.budget != null &&
+      project.budget != "" &&
+      project.name != null &&
+      project.name != ""
+    ) {
+      project.cost = 0;
+      project.services = [];
 
-    function createPost(project) {
-        //initialize cost and services
-        project.cost = 0
-        project.services = []
-
-        if (project.category) {
-            fetch("http://localhost:5000/projects", {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify(project),
-            }).then((resp) => resp.json())
-                .then((data) => {
-                    history('/projects', { state: { message: 'Projeto criado com sucesso' } })
-                })
-                .catch(err => console.log("erro:", err))
-        } else {
-            toast.error("Escolha uma categoria!");
-        }
-
-
+      fetch("http://localhost:5000/projects", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(project),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          history("/projects", {
+            state: { message: "Projeto criado com sucesso" },
+          });
+        })
+        .catch((err) => console.log("erro:", err));
+    } else {
+      if (!project.category) {
+        toast.error("Escolha uma categoria!");
+      } else if (
+        project.budget < 0 ||
+        project.budget == null ||
+        project.budget == ""
+      ) {
+        toast.error("Digite um número positivo para o valor do projeto!");
+      } else if (project.name == "" || project.name == null) {
+        toast.error("Digite um nome para o projeto!");
+      }
     }
+  }
 
-    return (
-        <div className={css.newproject_container}>
-            <h1>Criar Projeto</h1>
-            <p>Crie seu projeto para depois adicionar os serviços!</p>
-            <ProjectForm btnText="Criar Projeto" handleSubmit={createPost} projectData />
-
-
-        </div>
-    )
+  return (
+    <div className={css.newproject_container}>
+      <h1>Criar Projeto</h1>
+      <p>Crie seu projeto para depois adicionar os serviços!</p>
+      <ProjectForm
+        btnText="Criar Projeto"
+        handleSubmit={createPost}
+        projectData
+      />
+    </div>
+  );
 }
 
-export default NewProjects
+export default NewProjects;

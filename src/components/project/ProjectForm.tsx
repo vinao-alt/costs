@@ -42,7 +42,7 @@ function ProjectForm({ handleSubmit, btnText, projectData}) {
             },
         })
     }
-
+    
     return (
         <>
             <form className={css.form} onSubmit={submit}>
