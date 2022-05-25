@@ -79,7 +79,7 @@ function Projects() {
                         id={item.id}
                         key={item.id}
                         name={item.name}
-                        budget={item.budget.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+                        budget={item.budget}
                         category={item.category}
                         handleRemove={removeProject}
                     />

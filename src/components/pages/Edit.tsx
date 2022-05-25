@@ -1,132 +1,116 @@
-import css from "./Edit.module.css";
+import { parse, v4 as uuidv4 } from 'uuid'
 
-import Loading from "../layout/Loading";
-import Container from "../layout/Container";
-import Message from "../layout/Message";
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
-import { Project } from "../interfaces/Project";
-import { Servico } from "../interfaces/Service";
+import css from './Edit.module.css'
 
-import ServiceForm from "../services/ServiceForm";
+import Loading from '../layout/Loading'
+import Container from '../layout/Container'
+import ProjectForm from '../project/ProjectForm'
+import Message from '../layout/Message'
+import ServiceForm from '../services/ServiceForm'
 import ServiceCard from '../services/ServiceCard'
-
-import ProjectForm from "../project/ProjectForm";
-
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid'
-import { toast } from "react-toastify";
+import { Project } from '../interfaces/Project'
+import { Servico } from '../interfaces/Service';
 
 function Edit() {
+  // let { id } = useParams()
+  // const [project, setProject] = useState([])
+  // const [showProjectForm, setShowProjectForm] = useState(false)
+  // const [showServiceForm, setShowServiceForm] = useState(false)
+  // const [services, setServices] = useState([])
+  // const [message, setMessage] = useState('')
+  // const [type, setType] = useState('success')
+
   const { id } = useParams();
   const [project, setProject] = useState<Project>();
-  const [services, setServices] = useState<Servico[]>([]);
+  const [services, setServices] = useState<Project>();
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState<string>();
   const [type, setType] = useState<string>();
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch(`http://localhost:5000/projects/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          const projetos: Servico[] = data
-          setProject(data)
-          setServices(data.services)
+    // Para ver o loading
+    setTimeout(
+      () =>
+        fetch(`http://localhost:5000/projects/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
-        .catch((err) => console.log(err));
-    }, 300);
-  }, [id]);
+          .then((resp) => resp.json())
+          .then((data) => {
+            setProject(data)
+            setServices(data.services)
+          }),
+      0,
+    )
+  }, [id])
 
-  function editPost(project) {
-    setMessage('');
-
+  function editPost(project: Project) {
     // budget validation
-    if (project.budget < project.cost || project.budget == null || project.budget == "") {
-      setMessage("O orçamento não pode ser menor que o custo do projeto!");
-      setType("error");
-      return false;
-    }
-
-    if (project.name == "" || project.name == null) {
-      setMessage("O projeto precisa ter um nome");
-      setType("error");
-      return false;
-    }
-
-    if (!project.category) {
-      setMessage("Selecione uma categoria");
-      setType("error");
-      return false;
+    if (project.budget < project.cost) {
+      setMessage('O Orçamento não pode ser menor que o custo do projeto!')
+      setType('error')
+      return false
     }
 
     fetch(`http://localhost:5000/projects/${project.id}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(project),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        setProject(data);
-        setShowProjectForm(false); //or (!showProjectForm)
-        setMessage("Projeto Atualizado!");
-        setType("success");
+        setProject(data)
+        setShowProjectForm(!showProjectForm)
+        setMessage('Projeto atualizado!')
+        setType('success')
       })
-      .catch((err) => console.log(err));
   }
 
-  function createService(project) {
-    setMessage('')
-
+  function createService(project:Project) {
+    // last service
     const lastService = project.services[project.services.length - 1]
+
     lastService.id = uuidv4()
+
     const lastServiceCost = lastService.cost
-    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
 
-    //maximum value validation
-    if (newCost > parseFloat(project.budget)) {
-      setMessage("Orçamento ultrapassado! verifique o valor do serviço")
+    const newCost = parseFloat(String(project.cost)) + parseFloat(String(lastServiceCost))
+
+    console.log(newCost)
+
+    // maximum value validation
+    if (newCost > parseFloat(String(project.budget))) {
+      setMessage('Orçamento ultrapassado, verifique o valor do serviço!')
       setType('error')
-      // project.services.pop()
+      project.services.pop()
       return false
     }
 
-    if (lastService.cost < 0 || newCost < 0) {
-      setMessage("Valor Negativo! Corrija o valor do serviço")
-      setType('error')
-      // project.services.pop()
-      return false
-    }
-
-    if (project.name == null || project.name == "") {
-      setMessage("O serviço precisa de um nome!")
-      setType('error')
-      return false
-    }
-
-    //add service cost to project total cost
+    // add service cost to project cost total
     project.cost = newCost
 
-    //update project
     fetch(`http://localhost:5000/projects/${project.id}`, {
       method: 'PATCH',
       headers: {
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(project)
-    }).then((resp) => resp.json())
+      body: JSON.stringify(project),
+    })
+      .then((resp) => resp.json())
       .then((data) => {
-        setShowServiceForm(false)
+        setServices(data.services)
+        setShowServiceForm(!showServiceForm)
+        setMessage('Serviço adicionado!')
+        setType('success')
       })
-      .catch((err) => console.log(err))
   }
 
   function removeService(id, cost) {
@@ -141,7 +125,11 @@ function Edit() {
       const projectUpdated = project
 
       projectUpdated.services = servicesUpdated
-      projectUpdated.cost = projectUpdated.cost - cost
+
+      if (parseFloat(cost) != NaN) {
+      projectUpdated.cost = projectUpdated.cost - parseFloat(cost)
+
+      }
 
       fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
         method: 'PATCH',
@@ -153,7 +141,7 @@ function Edit() {
         .then((resp) => resp.json())
         .then((data) => {
           setProject(projectUpdated)
-          setServices(servicesUpdated)
+          // setServices(servicesUpdated)
           setMessage('Serviço removido com sucesso!')
           setType('success')
         })
@@ -161,13 +149,12 @@ function Edit() {
   }
 
   function toggleProjectForm() {
-    setShowProjectForm(!showProjectForm);
+    setShowProjectForm(!showProjectForm)
   }
 
   function toggleServiceForm() {
-    setShowServiceForm(!showServiceForm);
+    setShowServiceForm(!showServiceForm)
   }
-
 
   return (
     <>
@@ -194,7 +181,7 @@ function Edit() {
 
                   <p>
                     <span>Total Utilizado: </span>
-                    {project.cost.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+                    {project.cost}
                   </p>
                 </div>
               ) : (
@@ -225,8 +212,8 @@ function Edit() {
             </div>
             <h2>Serviços</h2>
             <Container customClass="start">
-              {services.length > 0 &&
-                services.map((service) => (
+              {project.services.length > 0 &&
+                project.services.map((service) => (
                   <ServiceCard
                     id={service.id}
                     name={service.name}
@@ -236,7 +223,7 @@ function Edit() {
                     handleRemove={removeService}
                   />
                 ))}
-              {services.length === 0 && <p>Não há serviços cadastrados.</p>}
+              {project.services.length === 0 && <p>Não há serviços cadastrados.</p>}
             </Container>
           </Container>
         </div>
@@ -247,4 +234,4 @@ function Edit() {
   );
 }
 
-export default Edit;
+export default Edit

@@ -1,6 +1,6 @@
 export interface Servico {
     id: number;
+    cost: number;
     name: string;
-    cost: string;
     description: string;
 }

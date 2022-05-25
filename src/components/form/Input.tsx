@@ -1,11 +1,11 @@
 import css from './Input.module.css'
 
 interface InputProps {
-    type?:string,
+    type?,
     text?:string,
     name?:string,
     placeholder?:string,
-    handleOnChange?:React.ChangeEventHandler<HTMLInputElement>,
+    handleOnChange?,
     value?:string
 }
 

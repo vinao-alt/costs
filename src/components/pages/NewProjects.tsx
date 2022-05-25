@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Project } from "../interfaces/Project";
 
 import ProjectForm from "../project/ProjectForm";
 
@@ -8,19 +9,17 @@ import css from "./NewProjects.module.css";
 function NewProjects() {
   const history = useNavigate();
 
-  function createPost(project) {
-    //initialize cost and services
+  function createPost(project: Project) {
+    project.cost = 0;
+    project.services = [];
 
     if (
       project.category &&
       project.budget >= 0 &&
       project.budget != null &&
-      project.budget != "" &&
       project.name != null &&
       project.name != ""
     ) {
-      project.cost = 0;
-      project.services = [];
 
       fetch("http://localhost:5000/projects", {
         method: "POST",
@@ -41,8 +40,7 @@ function NewProjects() {
         toast.error("Escolha uma categoria!");
       } else if (
         project.budget < 0 ||
-        project.budget == null ||
-        project.budget == ""
+        project.budget == null
       ) {
         toast.error("Digite um número positivo para o valor do projeto!");
       } else if (project.name == "" || project.name == null) {
