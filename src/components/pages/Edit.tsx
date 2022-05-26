@@ -14,6 +14,7 @@ import ServiceCard from "../services/ServiceCard";
 import { Project } from "../interfaces/Project";
 import { Servico } from "../interfaces/Service";
 import { toast } from "react-toastify";
+import Formatters from "../utils/Formatters";
 
 function Edit() {
   // let { id } = useParams()
@@ -187,13 +188,11 @@ function Edit() {
                   </p>
 
                   <p>
-                    <span>Total de Orçamento: </span>
-                    {project.budget}
+                    <Formatters name={"Total de Orçamento:"} format={"0,0.00"}>{project.budget}</Formatters>
                   </p>
 
                   <p>
-                    <span>Total Utilizado: </span>
-                    {project.cost}
+                    <Formatters name={"Total Utilizado:"} format={"0,0.00"}>{project.cost}</Formatters>
                   </p>
                 </div>
               ) : (

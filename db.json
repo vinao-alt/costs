@@ -1,19 +1,19 @@
 {
   "projects": [
     {
-      "name": "name",
-      "budget": "500",
+      "name": "projeto 1",
+      "budget": "2000",
       "category": {
-        "id": "3",
-        "name": "Design"
+        "id": "2",
+        "name": "Desenvolvimento"
       },
-      "cost": "300",
+      "cost": 500,
       "services": [
         {
-          "name": "projeto 1",
-          "cost": "300",
+          "name": "teste de cost",
+          "cost": "500",
           "description": "testar",
-          "id": "650a06c0-6e43-4bad-94d6-2ab7889b8a63"
+          "id": "e60c5399-02b6-43f0-bc15-a97e77ee334c"
         }
       ],
       "id": 1
