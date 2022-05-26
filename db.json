@@ -1,27 +1,14 @@
 {
   "projects": [
     {
-      "name": "projeto 2",
-      "budget": "500",
+      "name": "projeto 1",
+      "budget": "15",
       "category": {
-        "id": "1",
-        "name": "Infra"
+        "id": "2",
+        "name": "Desenvolvimento"
       },
-      "cost": 500,
-      "services": [
-        {
-          "name": "teste",
-          "cost": "250",
-          "description": "a",
-          "id": "c8c26f87-eda3-435b-b34f-2cbb4d1d9934"
-        },
-        {
-          "name": "teste 3",
-          "cost": "250",
-          "description": "aa",
-          "id": "de502547-06dd-43c0-a0c4-c537683723de"
-        }
-      ],
+      "cost": 0,
+      "services": [],
       "id": 1
     }
   ],
