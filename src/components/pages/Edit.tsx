@@ -53,26 +53,36 @@ function Edit() {
 
   function editPost(project: Project) {
     // budget validation
-    if (project.budget < project.cost) {
-      setMessage("O Orçamento não pode ser menor que o custo do projeto!");
-      setType("error");
-      return false;
-    }
+    // if () {
+    //   // setMessage("O Orçamento não pode ser menor que o custo do projeto!");
+    //   // setType("error");
+    //   toast.error("O Orçamento não pode ser menor que o custo do projeto!")
+    //   return false;
+    // }
 
-    fetch(`http://localhost:5000/projects/${project.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(project),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setProject(data);
-        setShowProjectForm(!showProjectForm);
-        setMessage("Projeto atualizado!");
-        setType("success");
-      });
+    if (project.budget < project.cost) {
+      if (project.cost < 0) {
+        toast.error("O custo não pode ser negativo!");
+        return false;
+      }
+      toast.error("O Orçamento não pode ser menor que o custo do projeto!");
+      return false;
+    } else {
+      fetch(`http://localhost:5000/projects/${project.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(project),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          setProject(data);
+          setShowProjectForm(!showProjectForm);
+          setMessage("Projeto atualizado!");
+          setType("success");
+        });
+    }
   }
 
   function createService(project: Project) {
@@ -82,8 +92,6 @@ function Edit() {
     const lastServiceCost = lastService.cost;
     const newCost =
       parseFloat(String(project.cost)) + parseFloat(String(lastServiceCost));
-    // add service cost to project cost total
-    project.cost = newCost;
     // maximum value validation
     if (newCost > parseFloat(String(project.budget))) {
       setMessage("Orçamento ultrapassado, verifique o valor do serviço!");
@@ -92,20 +100,31 @@ function Edit() {
       return false;
     }
 
-    fetch(`http://localhost:5000/projects/${project.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(project),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setServices(data.services);
-        setShowServiceForm(!showServiceForm);
-        setMessage("Serviço adicionado!");
-        setType("success");
-      });
+    // add service cost to project cost total
+    project.cost = newCost;
+
+    if (lastServiceCost > 0 && lastService.name && lastService.description) {
+      fetch(`http://localhost:5000/projects/${project.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(project),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          setServices(data.services);
+          setShowServiceForm(!showServiceForm);
+          setMessage("Serviço adicionado!");
+          setType("success");
+        });
+    } else {
+      toast.error("Insira todos os dados corretamente!");
+      project.services.pop();
+      setShowServiceForm(!showServiceForm);
+      project.cost = project.services[project.services.length -1].cost
+      return false;
+    }
   }
 
   function removeService(id, cost) {
