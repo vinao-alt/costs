@@ -10,13 +10,11 @@ function ServiceCard({id, name, cost, description, handleRemove}) {
         handleRemove(id,cost)
     }
 
-    cost = cost*100
-
     return(
         <div className={css.project_card}>
             <h4>{name}</h4>
             <p>
-            <span>Custo: </span> R$ {VMasker.toMoney(cost)}
+            <span>Custo: </span> R$ {VMasker.toMoney(cost * 100)}
             </p>
             <p>{description}</p>
             <div className={css.project_card_actions}>

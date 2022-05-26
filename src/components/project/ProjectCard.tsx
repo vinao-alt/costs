@@ -7,8 +7,6 @@ import VMasker from 'vanilla-masker'
 
 function ProjectCard({ id, name, budget, category, handleRemove }) {
 
-  budget = budget * 100
-
   const remove = (e) => {
     e.preventDefault();
     handleRemove(id);
@@ -18,7 +16,7 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
     <div className={css.project_card}>
       <h4>{name}</h4>
       <p>
-        <span>Orçamento: </span> R$ {VMasker.toMoney(budget)}
+        <span>Orçamento: </span> R$ {VMasker.toMoney(budget * 100)}
       </p>
       <p className={css.category_text}>
         <span className={`${css[category.name.toLowerCase()]}`}></span>{" "}
