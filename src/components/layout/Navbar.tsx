@@ -1,48 +1,54 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 import Container from './Container'
 import css from './Navbar.module.css'
 import logo_img from '../img/costs_logo.png'
 function Navbar() {
 
-    function changeColor() {
-        
-    }
+    return (
+        <>
+            <nav className={css.navbar}>
+                <Container>
+                    <Link to={"/"}>
+                        <img src={logo_img} alt="logo" />
 
-return (
-    <>
-        <nav className={css.navbar}>
-            <Container>
-                <Link to={"/"}>
-                    <img src={logo_img} alt="logo" />
+                    </Link>
 
-                </Link>
+                    <ul className={css.list}>
+                        <li className={css.item}>
+                            <NavLink to="/" style={({ isActive }) => {
+                                return { color: isActive ? '#ffbb33' : undefined }
+                            }} > Home </NavLink>
+                        </li>
 
-                <ul className={css.list}>
-                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
-                        <Link to="/"> Home </Link>
-                    </li>
+                        <li className={css.item}>
+                            <NavLink to="/projects" style={({ isActive }) => {
+                                return { color: isActive ? '#ffbb33' : undefined }
+                            }}> Projetos </NavLink>
+                        </li>
 
-                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
-                        <Link to="/projects"> Projetos </Link>
-                    </li>
+                        <li className={css.item}>
+                            <NavLink to="/company" style={({ isActive }) => {
+                                return { color: isActive ? '#ffbb33' : undefined }
+                            }}> Empresa </NavLink>
 
-                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
-                        <Link to="/company"> Empresa </Link>
+                        </li>
 
-                    </li>
+                        <li className={css.item}>
+                            <NavLink to="/newprojects" style={({ isActive }) => {
+                                return { color: isActive ? '#ffbb33' : undefined }
+                            }}> Novo Projeto </NavLink>
+                        </li>
 
-                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
-                        <Link to="/newprojects"> Novo Projeto </Link>
-                    </li>
-
-                    <li className={`${css.item} ${" "}`} id="opt" onClick={changeColor}>
-                        <Link to="/contact"> Contato </Link>
-                    </li>
-                </ul>
-            </Container>
-        </nav>
-    </>
-)
+                        <li className={css.item}>
+                            <NavLink to="/contact" style={({ isActive }) => {
+                                return { color: isActive ? '#ffbb33' : undefined }
+                            }}> Contato </NavLink>
+                        </li>
+                    </ul>
+                </Container>
+            </nav>
+        </>
+    )
 }
 export default Navbar

@@ -1,22 +1,81 @@
 {
   "projects": [
     {
-      "name": "projeto 1",
-      "budget": "2000",
+      "name": "teste",
+      "budget": "100",
       "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 1
+    },
+    {
+      "name": "projeto 1",
+      "budget": "1000",
+      "category": {
+        "id": "1",
+        "name": "Infra"
       },
       "cost": 500,
       "services": [
         {
-          "name": "teste de cost",
+          "name": "teste",
           "cost": "500",
-          "description": "testar",
-          "id": "e60c5399-02b6-43f0-bc15-a97e77ee334c"
+          "description": "a",
+          "id": "1cafdc3e-7a39-4802-88cf-a2134b5fa2b3"
         }
       ],
-      "id": 1
+      "id": 2
+    },
+    {
+      "name": "serviço 1",
+      "budget": "10000",
+      "cost": 7400,
+      "services": [
+        {
+          "name": "teste",
+          "cost": "5000",
+          "description": "testar",
+          "id": "27358b0d-da5f-4cfe-a491-fff9b507fb9c"
+        },
+        {
+          "name": "teste 2",
+          "cost": "2000",
+          "description": "testar",
+          "id": "295436df-7ff5-433d-94fb-8fdb4fbd01bb"
+        },
+        {
+          "name": "aaa",
+          "cost": "400",
+          "description": "testar",
+          "id": "a9d4c52d-7073-43ca-af28-dd6e7dfcf9e0"
+        }
+      ],
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "id": 3
+    },
+    {
+      "name": "Nasa 2022",
+      "budget": "200000000",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "cost": 3000000,
+      "services": [
+        {
+          "name": "Ampliação área de testes",
+          "cost": "3000000",
+          "description": "Compra de equipamentos para desenvolvimentos",
+          "id": "f6ea3552-af2a-4f95-b47e-2c576e0807e3"
+        }
+      ],
+      "id": 4
     }
   ],
   "categories": [

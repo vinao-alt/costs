@@ -6,7 +6,7 @@ interface InputProps {
     name?:string,
     placeholder?:string,
     handleOnChange?,
-    value?:string
+    value?:string,
 }
 
 function Input({ type, text, name, placeholder, handleOnChange, value }:InputProps) {

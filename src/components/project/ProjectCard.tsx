@@ -3,9 +3,12 @@ import css from "./ProjectCard.module.css";
 import { Link } from "react-router-dom";
 
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
-import Formatters from "../utils/Formatters";
+import VMasker from 'vanilla-masker'
 
 function ProjectCard({ id, name, budget, category, handleRemove }) {
+
+  budget = budget * 100
+
   const remove = (e) => {
     e.preventDefault();
     handleRemove(id);
@@ -15,7 +18,7 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
     <div className={css.project_card}>
       <h4>{name}</h4>
       <p>
-        <Formatters name={"Orçamento"} format={"0,0.00"}>{budget}</Formatters>
+        <span>Orçamento: </span> R$ {VMasker.toMoney(budget)}
       </p>
       <p className={css.category_text}>
         <span className={`${css[category.name.toLowerCase()]}`}></span>{" "}

@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import { Project } from "../interfaces/Project";
 
 import ProjectForm from "../project/ProjectForm";
-
 import css from "./NewProjects.module.css";
 
 function NewProjects() {
@@ -15,6 +14,7 @@ function NewProjects() {
 
     if (project.category) {
       if (project.budget > 0) {
+
         fetch("http://localhost:5000/projects", {
           method: "POST",
           headers: {

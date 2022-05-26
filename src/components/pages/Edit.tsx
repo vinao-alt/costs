@@ -14,7 +14,7 @@ import ServiceCard from "../services/ServiceCard";
 import { Project } from "../interfaces/Project";
 import { Servico } from "../interfaces/Service";
 import { toast } from "react-toastify";
-import Formatters from "../utils/Formatters";
+import VMasker from 'vanilla-masker'
 
 function Edit() {
   // let { id } = useParams()
@@ -33,8 +33,9 @@ function Edit() {
   const [message, setMessage] = useState<string>();
   const [type, setType] = useState<string>();
 
+
+
   useEffect(() => {
-    // Para ver o loading
     setTimeout(
       () =>
         fetch(`http://localhost:5000/projects/${id}`, {
@@ -48,18 +49,10 @@ function Edit() {
             setProject(data);
             setServices(data.services);
           }),
-      0
     );
   }, [id]);
 
   function editPost(project: Project) {
-    // budget validation
-    // if () {
-    //   // setMessage("O Orçamento não pode ser menor que o custo do projeto!");
-    //   // setType("error");
-    //   toast.error("O Orçamento não pode ser menor que o custo do projeto!")
-    //   return false;
-    // }
 
     if (project.budget < project.cost) {
       if (project.cost < 0) {
@@ -69,6 +62,7 @@ function Edit() {
       toast.error("O Orçamento não pode ser menor que o custo do projeto!");
       return false;
     } else {
+
       fetch(`http://localhost:5000/projects/${project.id}`, {
         method: "PATCH",
         headers: {
@@ -123,7 +117,7 @@ function Edit() {
       toast.error("Insira todos os dados corretamente!");
       project.services.pop();
       setShowServiceForm(!showServiceForm);
-      project.cost = project.services[project.services.length -1].cost
+      project.cost = project.services[project.services.length - 1].cost
       return false;
     }
   }
@@ -169,6 +163,8 @@ function Edit() {
     setShowServiceForm(!showServiceForm);
   }
 
+
+
   return (
     <>
       {project?.name ? (
@@ -188,11 +184,13 @@ function Edit() {
                   </p>
 
                   <p>
-                    <Formatters name={"Total de Orçamento:"} format={"0,0.00"}>{project.budget}</Formatters>
+                    <span>Orçamento Total: </span> R$ {VMasker.toMoney(project.budget * 100)}
+
                   </p>
 
                   <p>
-                    <Formatters name={"Total Utilizado:"} format={"0,0.00"}>{project.cost}</Formatters>
+                    <span>Custo Total: </span> R$ {VMasker.toMoney(project.cost * 100)}
+
                   </p>
                 </div>
               ) : (
