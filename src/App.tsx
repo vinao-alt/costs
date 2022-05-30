@@ -12,6 +12,9 @@ import Home from './components/pages/Home';
 
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css';
+// import Select from './components/form/SelectComponent';
+
+import 'antd/dist/antd.min.css'
 
 
 
@@ -27,6 +30,7 @@ function App() {
           <Route path='/newprojects' element={<NewProjects />}></Route>
           <Route path='/contact' element={<Contact />}></Route>
           <Route path='/edit/:id' element={<Edit />}></Route>
+
         </Routes>
         <ToastContainer />
       </Container>

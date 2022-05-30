@@ -10,13 +10,14 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
   const remove = (e) => {
     e.preventDefault();
     handleRemove(id);
-    handleRemove(id);
   };
+  
   return (
     <div className={css.project_card}>
       <h4>{name}</h4>
       <p>
-        <span>Orçamento: </span> R$ {VMasker.toMoney(budget * 100)}
+        <span>Orçamento: </span> R$ {budget}
+        {VMasker.toMoney(budget * 100)}
       </p>
       <p className={css.category_text}>
         <span className={`${css[category.name.toLowerCase()]}`}></span>{" "}

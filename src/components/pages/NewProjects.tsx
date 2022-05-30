@@ -12,29 +12,20 @@ function NewProjects() {
     project.cost = 0;
     project.services = [];
 
-    if (project.category) {
-      if (project.budget > 0) {
-
-        fetch("http://localhost:5000/projects", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(project),
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            history("/projects", {
-              state: { message: "Projeto criado com sucesso" },
-            });
-          })
-          .catch((err) => console.log("erro:", err));
-      } else {
-        toast.warning("Digite um orçamento positivo!");
-      }
-    } else {
-      toast.warning("A categoria não foi preenchida!");
-    }
+    fetch("http://localhost:5000/projects", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(project),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        history("/projects", {
+          state: { message: "Projeto criado com sucesso" },
+        });
+      })
+      .catch((err) => console.log("erro:", err));
   }
 
   return (

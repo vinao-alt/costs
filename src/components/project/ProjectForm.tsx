@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react'
+import { Form, Input, Button, Select } from 'antd'
+import { Project } from '../interfaces/Project'
 
-import css from './ProjectForm.module.css'
 
-import Input from '../form/Input'
-import Select from '../form/Select'
-import SubmitButton from '../form/SubmitButton'
-import { toast } from 'react-toastify'
+function ProjectForm({ handleSubmit, btnText, projectData }) {
 
-function ProjectForm({ handleSubmit, btnText, projectData}) {
-
-    const [categories, setCategories] = useState([])
-    const [project, setProject] = useState(projectData || {})
+    const [categories, setCategories] = useState<Project[]>([])
+    const [project, setProject] = useState<Project>(projectData || {})
 
     useEffect(() => {
         fetch("http://localhost:5000/categories", {
@@ -25,35 +21,67 @@ function ProjectForm({ handleSubmit, btnText, projectData}) {
             .catch((err) => console.log(err))
     }, [])
 
-    const submit = (e) => {
-        e.preventDefault()
-        handleSubmit(project)
-    }
-
     function handleChange(e) {
         setProject({ ...project, [e.target.name]: e.target.value })
     }
+
+    // function handleCategory(project) {
+    //     setProject({
+    //         ...project,
+    //         category: {
+    //             id: project.category.id,
+    //             name: project.category.name,
+    //         },
+    //     })
+    // }
 
     function handleCategory(e) {
         setProject({
             ...project, category: {
                 id: e.target.value,
+                // name: e.target.name
                 name: e.target.options[e.target.selectedIndex].text
             },
         })
     }
-    
+
+    function handleFinish(a: any) {
+        handleSubmit(project)
+    }
+
     return (
         <>
-            <form className={css.form} onSubmit={submit}>
-                <Input type="text" text="Nome do projeto" name="name" placeholder="Insira o nome do projeto" handleOnChange={handleChange} value={project.name ? project.name : ""}/>
+            <Form
+                onFinish={handleFinish}>
+                <Form.Item
+                    name={['name']}
+                    rules={[{ required: true, message: 'Digite o nome do projeto por favor!' }]}
+                    label="nome do projeto">
+                    <Input placeholder='Ex. App ping pong' onChange={handleChange} value={project.name} />
+                </Form.Item>
 
-                <Input type="number" text="Orçamento do projeto" name="budget" placeholder="Insira o orçamento total" handleOnChange={handleChange} value={project.budget ? project.budget : ""}/>
+                <Form.Item
+                    name={['budget']}
+                    rules={[{ required: true, min: 0, max: 99 }]}
+                    label="orçamento do projeto">
+                    <Input type='number' onChange={handleChange} placeholder=' Ex. 100' value={project.budget} />
+                </Form.Item>
 
-                <Select name="category_id" text="Selecione a categoria" options={categories} handleOnChange={handleCategory} value={project.category ? project.category.id : ""} />
+                <Form.Item
+                    name={['category']}
+                    rules={[{ required: true, message: 'Selecione uma Categoria!' }]}
+                    label="categoria">
+                    <Select style={{ width: 120 }} onChange={handleCategory} value={project.category}>
+                        {categories.map((option) => (
+                            <Select.Option value={option.id} key={option.id} id={option.id}> {option.name} </ Select.Option>
+                        ))}
+                    </Select>
+                </Form.Item>
 
-                <SubmitButton text={btnText} />
-            </form>
+                <Button htmlType='submit'>
+                    {btnText}
+                </Button>
+            </Form>
         </>
     )
 }
