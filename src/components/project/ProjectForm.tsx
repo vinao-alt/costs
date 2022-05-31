@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Form, Input, Button, Select } from 'antd'
-import { Project } from '../interfaces/Project'
+import { Category, Project } from '../interfaces/Project'
 
 
 function ProjectForm({ handleSubmit, btnText, projectData }) {
 
-    const [categories, setCategories] = useState<Project[]>([])
+    const [categories, setCategories] = useState<Category[]>([])
     const [project, setProject] = useState<Project>(projectData || {})
 
     useEffect(() => {
@@ -21,32 +21,20 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
             .catch((err) => console.log(err))
     }, [])
 
-    function handleChange(e) {
-        setProject({ ...project, [e.target.name]: e.target.value })
-    }
+    function handleFinish(dataSubmit) {
+        const category: Category = categories.find(category => category.id = dataSubmit.category) as Category;
 
-    // function handleCategory(project) {
-    //     setProject({
-    //         ...project,
-    //         category: {
-    //             id: project.category.id,
-    //             name: project.category.name,
-    //         },
-    //     })
-    // }
-
-    function handleCategory(e) {
-        setProject({
-            ...project, category: {
-                id: e.target.value,
-                // name: e.target.name
-                name: e.target.options[e.target.selectedIndex].text
-            },
-        })
-    }
-
-    function handleFinish(a: any) {
+        const project: Project = {
+             name: dataSubmit.name,
+             budget: dataSubmit.budget,
+             category,
+             cost: dataSubmit.cost,
+             services: [],
+             id: dataSubmit.id
+        }
+        console.log(dataSubmit)
         handleSubmit(project)
+        
     }
 
     return (
@@ -57,23 +45,23 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
                     name={['name']}
                     rules={[{ required: true, message: 'Digite o nome do projeto por favor!' }]}
                     label="nome do projeto">
-                    <Input placeholder='Ex. App ping pong' onChange={handleChange} value={project.name} />
+                    <Input placeholder='Ex. App ping pong' value={project.name} />
                 </Form.Item>
 
                 <Form.Item
                     name={['budget']}
                     rules={[{ required: true, min: 0, max: 99 }]}
                     label="orçamento do projeto">
-                    <Input type='number' onChange={handleChange} placeholder=' Ex. 100' value={project.budget} />
+                    <Input type='number' placeholder=' Ex. 100' value={project.budget} />
                 </Form.Item>
 
                 <Form.Item
                     name={['category']}
                     rules={[{ required: true, message: 'Selecione uma Categoria!' }]}
                     label="categoria">
-                    <Select style={{ width: 120 }} onChange={handleCategory} value={project.category}>
+                    <Select style={{ width: 120 }} value={project.category}>
                         {categories.map((option) => (
-                            <Select.Option value={option.id} key={option.id} id={option.id}> {option.name} </ Select.Option>
+                            <Select.Option key={option.id} id={option.id} value={option.id} > {option.name} </ Select.Option>
                         ))}
                     </Select>
                 </Form.Item>

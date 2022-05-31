@@ -82,6 +82,7 @@ function Projects() {
                         budget={item.budget}
                         category={item.category}
                         handleRemove={removeProject}
+
                     />
                 ))}
                 {!removeLoading && <Loading />}

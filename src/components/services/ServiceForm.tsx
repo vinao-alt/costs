@@ -1,47 +1,53 @@
 import css from '../project/ProjectForm.module.css'
 import { useState } from 'react'
-import Input from '../form/Input'
-import SubmitButton from '../form/SubmitButton'
+import { Form, Input, Button, Select } from 'antd'
+import { Service } from '../interfaces/Service'
+import { Project } from '../interfaces/Project'
 
-function ServiceForm({handleSubmit, btnText, projectData}) {
+function ServiceForm({ handleSubmit, btnText, projectData }) {
 
-    const [service, setService] = useState({})
+    const [services, setServices] = useState<Service>({} || projectData)
 
-    function submit(e) {
-        e.preventDefault()
-        projectData.services.push(service)
-        handleSubmit(projectData)
-    }
-
-    function handleChange(e) {
-        setService({...service, [e.target.name]: e.target.value})
+    function handleFinish(dataSubmit) {
+        const service: Service = {
+            id: dataSubmit.id,
+            name: dataSubmit.name,
+            cost: dataSubmit.cost,
+            description: dataSubmit.description
+        }
+        console.log("data submit: ",dataSubmit)
+        console.log("service: ", service)
+        handleSubmit(service,projectData)
     }
 
     return (<>
-        <form onSubmit={submit} className={css.form}>
-            <Input
-                type='text'
-                text='Nome do serviço'
-                name="name"
-                placeholder='Insira o nome do serviço'
-                handleOnChange={handleChange} />
+        <Form
+            onFinish={handleFinish}>
+            <Form.Item
+                name={['name']}
+                rules={[{ required: true, message: 'Digite o nome do Serviço por favor!' }]}
+                label="nome do Serviço">
+                <Input placeholder='Ex. Atualizar banco de dados da NETFLIX' value={services.name} />
+            </Form.Item>
 
-            <Input
-                type='number'
-                text='Custo do serviço'
-                name="cost"
-                placeholder='Insira o valor total'
-                handleOnChange={handleChange} />
+            <Form.Item
+                name={['cost']}
+                rules={[{ required: true, min: 0, max: 99 }]}
+                label="custo do serviço">
+                <Input type='number' placeholder=' Ex. 100' value={services.cost} />
+            </Form.Item>
 
-            <Input
-                type='text'
-                text='Descrição do serviço'
-                name="description"
-                placeholder='Descreva o serviço'
-                handleOnChange={handleChange} />
+            <Form.Item
+                name={['description']}
+                rules={[{ required: true}]}
+                label="descrição do serviço">
+                <Input placeholder=' Ex. 100' value={services.cost} />
+            </Form.Item>
 
-            <SubmitButton text={btnText} />
-        </form>
+            <Button htmlType='submit'>
+                {btnText}
+            </Button>
+        </Form>
     </>)
 }
 

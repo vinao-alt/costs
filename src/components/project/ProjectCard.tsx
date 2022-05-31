@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import VMasker from 'vanilla-masker'
+import { Project } from "../interfaces/Project";
 
 function ProjectCard({ id, name, budget, category, handleRemove }) {
 
@@ -11,7 +12,8 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
     e.preventDefault();
     handleRemove(id);
   };
-  
+
+
   return (
     <div className={css.project_card}>
       <h4>{name}</h4>

@@ -1,13 +1,16 @@
-import { Servico } from "./Service"
+import { Service } from "./Service"
 
 export interface Project {
     id: number,
     budget: number,
     name: string,
-    category: {
-        id: number,
-        name: string
-    }
+    category: Category,
     cost: number,
-    services: Servico[],
+    services: Service[],
+    
+}
+
+export interface Category {
+    id: number,
+    name: string,
 }

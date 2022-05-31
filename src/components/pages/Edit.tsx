@@ -12,22 +12,14 @@ import Message from "../layout/Message";
 import ServiceForm from "../services/ServiceForm";
 import ServiceCard from "../services/ServiceCard";
 import { Project } from "../interfaces/Project";
-import { Servico } from "../interfaces/Service";
+import { Service } from "../interfaces/Service";
 import { toast } from "react-toastify";
 import VMasker from 'vanilla-masker'
 
 function Edit() {
-  // let { id } = useParams()
-  // const [project, setProject] = useState([])
-  // const [showProjectForm, setShowProjectForm] = useState(false)
-  // const [showServiceForm, setShowServiceForm] = useState(false)
-  // const [services, setServices] = useState([])
-  // const [message, setMessage] = useState('')
-  // const [type, setType] = useState('success')
-
   const { id } = useParams();
   const [project, setProject] = useState<Project>();
-  const [services, setServices] = useState<Project>();
+  const [services, setServices] = useState<Service>();
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState<string>();
@@ -51,6 +43,9 @@ function Edit() {
           }),
     );
   }, [id]);
+
+  console.log("projects: ", project)
+  console.log("services: ", services)
 
   function editPost(project: Project) {
 
@@ -80,9 +75,11 @@ function Edit() {
     }
   }
 
+
   function createService(project: Project) {
-    // last service
-    const lastService = project.services[project.services.length - 1];
+    console.log("projects dentro da func: ", project)
+    console.log("services dentro da func: ", services)
+    const lastService = project.services[project.services.length - 1]
     lastService.id = uuidv4();
     const lastServiceCost = lastService.cost;
     const newCost =
