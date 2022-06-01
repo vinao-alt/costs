@@ -62,6 +62,8 @@ function Projects() {
         .catch((err) => console.log(err))
     }
 
+    console.log("(Projects Component) projects: ", projects)
+
     return (
         <div className={css.project_container}>
             <div className={css.title_container}>

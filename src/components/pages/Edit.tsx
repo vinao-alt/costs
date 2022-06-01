@@ -11,7 +11,7 @@ import ProjectForm from "../project/ProjectForm";
 import Message from "../layout/Message";
 import ServiceForm from "../services/ServiceForm";
 import ServiceCard from "../services/ServiceCard";
-import { Project } from "../interfaces/Project";
+import { Project, ProjectUpdate } from "../interfaces/Project";
 import { Service } from "../interfaces/Service";
 import { toast } from "react-toastify";
 import VMasker from 'vanilla-masker'
@@ -43,41 +43,34 @@ function Edit() {
     );
   }, [id]);
 
-
-  console.log("projects: ", project)
-  console.log("services: ", services)
+  console.log("(Edit Component) *anterior a função edit post* project: ", project)
 
   function editPost(project: Project) {
-    if (project.budget < project.cost) {
-      if (project.cost < 0) {
-        toast.error("O custo não pode ser negativo!");
-        return false;
-      }
-      toast.error("O Orçamento não pode ser menor que o custo do projeto!");
-      return false;
-    } else {
 
-      fetch(`http://localhost:5000/projects/${project.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(project),
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          setProject(data);
-          setShowProjectForm(!showProjectForm);
-          setMessage("Projeto atualizado!");
-          setType("success");
-        });
-    }
+    console.log("(Edit Component) *sobre o fetch da função edit post* project: ", project)
+
+
+    fetch(`http://localhost:5000/projects/${project.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(project),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setProject(data);
+        setShowProjectForm(!showProjectForm);
+        setMessage("Projeto atualizado!");
+        setType("success");
+      });
+
+
+    console.log("(Edit Component) *ao final da função edit post* project: ", project)
+
   }
 
-
   function createService(service: Service, project: Project) {
-    console.log("projects dentro da func: ", project)
-    console.log("services dentro da func: ", services)
     // const lastService = project.services[project.services.length - 1]
     const lastService: Service = service
     lastService.id = uuidv4();
@@ -93,7 +86,7 @@ function Edit() {
     }
 
     project.services.push(lastService)
-    
+
 
     // add service cost to project cost total
     project.cost = newCost;

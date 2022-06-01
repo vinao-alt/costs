@@ -22,8 +22,6 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
             description: dataSubmit.description,
             // date: new Date()
         }
-        console.log("data submit: ", dataSubmit)
-        console.log("service: ", service)
         handleSubmitService(service, projectData)
     }
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Form, Input, Button, Select } from 'antd'
+import { Form, Input, Button, Select, InputNumber } from 'antd'
 import { Category, Project } from '../interfaces/Project'
 import css from './ProjectForm.module.css'
 
@@ -34,14 +34,15 @@ function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
             name: dataSubmit.name,
             budget: dataSubmit.budget,
             category,
-            cost: dataSubmit.cost,
+            cost: projectData.cost,
             services: [],
-            id: dataSubmit.id
+            id: projectData.id
         }
-        console.log(dataSubmit)
         handleSubmit(project)
 
     }
+
+    // console.log("(ProjectForm Component) project: ",project)
 
     return (
         <>
@@ -58,16 +59,16 @@ function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
 
                 <Form.Item
                     name={['budget']}
-                    rules={[{ required: true, min: 0, max: 99 }]}
+                    rules={[{required:true, type: 'number', min: 0, max: undefined }]}
                     label="orçamento do projeto">
-                    <Input type='number' placeholder=' Ex. 100' value={project.budget} />
+                    <InputNumber placeholder=' Ex. 100' value={project.budget} />
                 </Form.Item>
 
                 <Form.Item
                     name={['category']}
                     rules={[{ required: true, message: 'Selecione uma Categoria!' }]}
                     label="categoria">
-                    <Select style={{ width: 120 }} value={project.category} size='large'>
+                    <Select style={{ width: 320 }} value={project.category}>
                         {categories.map((option) => (
                             <Select.Option key={option.id} id={option.id} value={option.id} > {option.name} </ Select.Option>
                         ))}
