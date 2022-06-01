@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Form, Input, Button, Select } from 'antd'
 import { Category, Project } from '../interfaces/Project'
+import css from './ProjectForm.module.css'
 
+interface projFormProps {
+    handleSubmit: Function,
+    btnText: string,
+    projectData?
+}
 
-function ProjectForm({ handleSubmit, btnText, projectData }) {
+function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
 
     const [categories, setCategories] = useState<Category[]>([])
     const [project, setProject] = useState<Project>(projectData || {})
@@ -25,21 +31,23 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
         const category: Category = categories.find(category => category.id = dataSubmit.category) as Category;
 
         const project: Project = {
-             name: dataSubmit.name,
-             budget: dataSubmit.budget,
-             category,
-             cost: dataSubmit.cost,
-             services: [],
-             id: dataSubmit.id
+            name: dataSubmit.name,
+            budget: dataSubmit.budget,
+            category,
+            cost: dataSubmit.cost,
+            services: [],
+            id: dataSubmit.id
         }
         console.log(dataSubmit)
         handleSubmit(project)
-        
+
     }
 
     return (
         <>
             <Form
+                layout='vertical'
+                className={css.form}
                 onFinish={handleFinish}>
                 <Form.Item
                     name={['name']}
@@ -59,14 +67,14 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
                     name={['category']}
                     rules={[{ required: true, message: 'Selecione uma Categoria!' }]}
                     label="categoria">
-                    <Select style={{ width: 120 }} value={project.category}>
+                    <Select style={{ width: 120 }} value={project.category} size='large'>
                         {categories.map((option) => (
                             <Select.Option key={option.id} id={option.id} value={option.id} > {option.name} </ Select.Option>
                         ))}
                     </Select>
                 </Form.Item>
 
-                <Button htmlType='submit'>
+                <Button htmlType='submit' type='primary' size='large'>
                     {btnText}
                 </Button>
             </Form>

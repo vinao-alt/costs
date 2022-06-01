@@ -4,20 +4,27 @@ import { Form, Input, Button, Select } from 'antd'
 import { Service } from '../interfaces/Service'
 import { Project } from '../interfaces/Project'
 
-function ServiceForm({ handleSubmit, btnText, projectData }) {
+interface servFormProps {
+    handleSubmitService: Function,
+    btnText: string,
+    projectData?
+}
+
+function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProps) {
 
     const [services, setServices] = useState<Service>({} || projectData)
 
     function handleFinish(dataSubmit) {
         const service: Service = {
-            id: dataSubmit.id,
+            id: 0,
             name: dataSubmit.name,
             cost: dataSubmit.cost,
-            description: dataSubmit.description
+            description: dataSubmit.description,
+            // date: new Date()
         }
-        console.log("data submit: ",dataSubmit)
+        console.log("data submit: ", dataSubmit)
         console.log("service: ", service)
-        handleSubmit(service,projectData)
+        handleSubmitService(service, projectData)
     }
 
     return (<>
@@ -39,7 +46,7 @@ function ServiceForm({ handleSubmit, btnText, projectData }) {
 
             <Form.Item
                 name={['description']}
-                rules={[{ required: true}]}
+                rules={[{ required: true }]}
                 label="descrição do serviço">
                 <Input placeholder=' Ex. 100' value={services.cost} />
             </Form.Item>

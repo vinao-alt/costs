@@ -2,8 +2,15 @@ import { BsFillTrashFill } from 'react-icons/bs'
 import css from '../project/ProjectCard.module.css'
 import VMasker from 'vanilla-masker'
 
+interface servCard {
+    id: number,
+    name: string,
+    cost: number,
+    description: string,
+    handleRemove: Function,
+}
 
-function ServiceCard({id, name, cost, description, handleRemove}) {
+function ServiceCard({id, name, cost, description, handleRemove}:servCard) {
 
     const remove = (e) => {
         e.preventDefault()

@@ -3,4 +3,5 @@ export interface Service {
     cost: number;
     name: string;
     description: string;
+    // date: Date
 }

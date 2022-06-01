@@ -1,24 +1,17 @@
 import css from './Input.module.css'
+import {Input} from 'antd'
 
 interface InputProps {
-    type?,
-    text?:string,
-    name?:string,
     placeholder?:string,
-    handleOnChange?,
     value?:string,
 }
 
-function Input({ type, text, name, placeholder, handleOnChange, value }:InputProps) {
+function InputComponent({placeholder, value }:InputProps) {
     return (
         <>
             <div className={css.form_control}>
-                <label htmlFor={name}>{text}:</label>
-                <input type={type}
-                    name={name}
-                    id={name}
+                <input
                     placeholder={placeholder}
-                    onChange={handleOnChange}
                     value={value}
                     required
                     />
@@ -27,4 +20,4 @@ function Input({ type, text, name, placeholder, handleOnChange, value }:InputPro
     )
 }
 
-export default Input
+export default InputComponent

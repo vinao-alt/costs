@@ -26,7 +26,6 @@ function Edit() {
   const [type, setType] = useState<string>();
 
 
-
   useEffect(() => {
     setTimeout(
       () =>
@@ -44,11 +43,11 @@ function Edit() {
     );
   }, [id]);
 
+
   console.log("projects: ", project)
   console.log("services: ", services)
 
   function editPost(project: Project) {
-
     if (project.budget < project.cost) {
       if (project.cost < 0) {
         toast.error("O custo não pode ser negativo!");
@@ -76,10 +75,11 @@ function Edit() {
   }
 
 
-  function createService(project: Project) {
+  function createService(service: Service, project: Project) {
     console.log("projects dentro da func: ", project)
     console.log("services dentro da func: ", services)
-    const lastService = project.services[project.services.length - 1]
+    // const lastService = project.services[project.services.length - 1]
+    const lastService: Service = service
     lastService.id = uuidv4();
     const lastServiceCost = lastService.cost;
     const newCost =
@@ -92,31 +92,27 @@ function Edit() {
       return false;
     }
 
+    project.services.push(lastService)
+    
+
     // add service cost to project cost total
     project.cost = newCost;
 
-    if (lastServiceCost > 0 && lastService.name && lastService.description) {
-      fetch(`http://localhost:5000/projects/${project.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(project),
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          setServices(data.services);
-          setShowServiceForm(!showServiceForm);
-          setMessage("Serviço adicionado!");
-          setType("success");
-        });
-    } else {
-      toast.error("Insira todos os dados corretamente!");
-      project.services.pop();
-      setShowServiceForm(!showServiceForm);
-      project.cost = project.services[project.services.length - 1].cost
-      return false;
-    }
+    fetch(`http://localhost:5000/projects/${project.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(project),
+
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setServices(data.services);
+        setShowServiceForm(!showServiceForm);
+        setMessage("Serviço adicionado!");
+        setType("success");
+      });
   }
 
   function removeService(id, cost) {
@@ -208,7 +204,7 @@ function Edit() {
               <div className={css.project_info}>
                 {showServiceForm && (
                   <ServiceForm
-                    handleSubmit={createService}
+                    handleSubmitService={createService}
                     btnText="Adicionar Serviço"
                     projectData={project}
                   />

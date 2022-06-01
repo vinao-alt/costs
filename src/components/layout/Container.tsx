@@ -1,6 +1,6 @@
 import css from  "./Container.module.css"
 
-function Container(props:any) {
+function Container(props) {
 
     return(
         <>
