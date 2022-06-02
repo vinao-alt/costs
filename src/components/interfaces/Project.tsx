@@ -7,6 +7,7 @@ export interface Project {
     category: Category,
     cost: number,
     services: Service[],
+    initDate: Date,
     limitDate: Date
     
 }

@@ -8,11 +8,12 @@ interface servCard {
     name: string,
     cost: number,
     description: string,
-    date: Date,
     handleRemove: Function,
+    initServiceDate: Date,
+    limitServiceDate: Date
 }
 
-function ServiceCard({ id, name, cost, description, date, handleRemove }: servCard) {
+function ServiceCard({ id, name, cost, description, handleRemove, initServiceDate, limitServiceDate }: servCard) {
 
     const remove = (e) => {
         e.preventDefault()
@@ -24,9 +25,8 @@ function ServiceCard({ id, name, cost, description, date, handleRemove }: servCa
             <h4>{name}</h4>
 
             <p>
-                <>
-                    <span>Data: </span> {Moment(date).format('DD-MM-YYYY')}
-                </>
+                <span>Inicio: </span> {Moment(initServiceDate).format('DD-MM-YYYY')}
+                <span className={css.data}>Fim: </span> {Moment(limitServiceDate).format('DD-MM-YYYY')}
             </p>
 
             <p>

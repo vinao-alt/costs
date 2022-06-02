@@ -15,7 +15,8 @@ import { Project, ProjectUpdate } from "../interfaces/Project";
 import { Service } from "../interfaces/Service";
 import { toast } from "react-toastify";
 import VMasker from 'vanilla-masker'
-import { Button } from 'antd'
+import { Button, Tag } from 'antd'
+import Moment from 'moment'
 function Edit() {
   const { id } = useParams();
   const [project, setProject] = useState<Project>();
@@ -67,6 +68,7 @@ function Edit() {
   function createService(service: Service, project: Project) {
     const lastService: Service = service
     lastService.id = uuidv4();
+    lastService.initServiceDate = new Date();
     const lastServiceCost = lastService.cost;
     const newCost =
       parseFloat(String(project.cost)) + parseFloat(String(lastServiceCost));
@@ -78,8 +80,15 @@ function Edit() {
       return false;
     }
 
+    if (project.limitDate < lastService.limitServiceDate) {
+      setMessage("A data do serviço não pode ser maior do que a de entrega do projeto!");
+      setType("error");
+      project.services.pop();
+      return false;
+    }
+
     project.services.push(lastService)
-    project.services.sort((a,b) => a.date < b.date ? 1 : -1 )
+    project.services.sort((a, b) => a.initServiceDate < b.initServiceDate ? 1 : -1)
 
 
     // add service cost to project cost total
@@ -146,6 +155,19 @@ function Edit() {
     setShowServiceForm(!showServiceForm);
   }
 
+  function changeColor(category) {
+    let cor = "#fff"
+    if (category.name == "Infra") {
+      cor = "magenta"
+    } else if (category.name == "Desenvolvimento") {
+      cor = "orange"
+    } else if (category.name == "Design") {
+      cor = "green"
+    } else if (category.name == "Planejamento") {
+      cor = "blue"
+    }
+    return cor
+  }
 
 
 
@@ -163,8 +185,14 @@ function Edit() {
               {!showProjectForm ? (
                 <div className={css.project_info}>
                   <p>
-                    <span>Categoria: </span>
-                    {project.category.name}
+                    <>
+                      <span>Data de Inicio</span> {Moment(project.initDate).format('DD-MM-YYYY')}
+                      <span className={css.data}>Data de Entrega</span> {Moment(project.limitDate).format('DD-MM-YYYY')}
+                    </>
+                  </p>
+                  <p>
+                    <span>Categoria: </span> {" "}
+                    <Tag color={changeColor(project.category)}>{project.category.name}</Tag>
                   </p>
 
                   <p>
@@ -215,8 +243,9 @@ function Edit() {
                     cost={service.cost}
                     description={service.description}
                     key={service.id}
-                    date={service.date}
                     handleRemove={removeService}
+                    initServiceDate={service.initServiceDate}
+                    limitServiceDate={service.limitServiceDate}
                   />
                 ))}
               {project.services.length === 0 && (

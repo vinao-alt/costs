@@ -36,7 +36,8 @@ function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
             cost: projectData.cost,
             services: [],
             id: projectData.id,
-            limitDate: dataSubmit.limitDate
+            limitDate: dataSubmit.limitDate,
+            initDate: dataSubmit.initDate
         }
         handleSubmit(project)
 

@@ -20,7 +20,8 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
             name: dataSubmit.name,
             cost: dataSubmit.cost,
             description: dataSubmit.description,
-            date: dataSubmit.date
+            initServiceDate: dataSubmit.initServiceDate,
+            limitServiceDate: dataSubmit.limitServiceDate
         }
         handleSubmitService(service, projectData)
     }
@@ -41,8 +42,8 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
 
 
             <Form.Item
-                name={['date']}
-                rules={[{ required: true, message: 'Especifique a data do serviço!' }]}
+                name={['limitServiceDate']}
+                rules={[{ required: true, message: 'Especifique a data limite do serviço!' }]}
                 label="Data do serviço">
                 <DatePicker onChange={onChange} />
             </Form.Item>
