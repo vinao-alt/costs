@@ -7,6 +7,7 @@ export interface Project {
     category: Category,
     cost: number,
     services: Service[],
+    limitDate: Date
     
 }
 
@@ -19,4 +20,5 @@ export interface ProjectUpdate {
     budget: number,
     name: string,
     category: Category,
+    limitDate: Date
 }

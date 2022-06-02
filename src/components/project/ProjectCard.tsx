@@ -6,16 +6,18 @@ import { Link } from "react-router-dom";
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 import VMasker from 'vanilla-masker'
 import { Category, Project } from "../interfaces/Project";
+import Moment from "moment";
 
-// interface projCardProps {
-//   id: number,
-//   name:string,
-//   budget:number,
-//   category:Category,
-//   handleRemove: Function
-// }
+interface projCardProps {
+  id: number,
+  name:string,
+  budget:number,
+  category:Category,
+  limitDate: Date,
+  handleRemove: Function
+}
 
-function ProjectCard({ id, name, budget, category, handleRemove }) {
+function ProjectCard({ id, name, budget, category, limitDate, handleRemove }:projCardProps) {
 
   const remove = (e) => {
     e.preventDefault();
@@ -25,6 +27,11 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
   return (
     <div className={css.project_card}>
       <h4>{name}</h4>
+      <p>
+                <>
+                    <span>Data: </span> {Moment(limitDate).format('DD-MM-YYYY')}
+                </>
+            </p>
       <p>
         <span>Orçamento: </span> R$ {VMasker.toMoney(budget * 100)}
       </p>

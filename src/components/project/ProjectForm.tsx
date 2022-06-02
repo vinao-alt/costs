@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Form, Input, Button, Select, InputNumber } from 'antd'
+import { Form, Input, Button, Select, InputNumber, DatePicker, DatePickerProps } from 'antd'
 import { Category, Project } from '../interfaces/Project'
 import css from './ProjectForm.module.css'
 
@@ -27,23 +27,24 @@ function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
             .catch((err) => console.log(err))
     }, [])
 
-    console.log(categories)
-
     function handleFinish(dataSubmit) {
         const category : Category = categories.find(category => category.id == dataSubmit.category)!
-        console.log(category)
-
         const project: Project = {
             name: dataSubmit.name,
             budget: dataSubmit.budget,
             category,
             cost: projectData.cost,
             services: [],
-            id: projectData.id
+            id: projectData.id,
+            limitDate: dataSubmit.limitDate
         }
         handleSubmit(project)
 
     }
+
+    const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+        console.log(date, dateString);
+      };
 
     return (
         <>
@@ -56,6 +57,13 @@ function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
                     rules={[{ required: true, message: 'Digite o nome do projeto por favor!' }]}
                     label="nome do projeto">
                     <Input placeholder='Ex. App ping pong' value={project.name} />
+                </Form.Item>
+
+                <Form.Item
+                    name={['limitDate']}
+                    rules={[{ required: true, message: 'Especifique a data de entrega do projeto!' }]}
+                    label="Data de entrega">
+                    <DatePicker onChange={onChange} />
                 </Form.Item>
 
                 <Form.Item

@@ -16,7 +16,6 @@ import { Service } from "../interfaces/Service";
 import { toast } from "react-toastify";
 import VMasker from 'vanilla-masker'
 import { Button } from 'antd'
-
 function Edit() {
   const { id } = useParams();
   const [project, setProject] = useState<Project>();
@@ -25,7 +24,6 @@ function Edit() {
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState<string>();
   const [type, setType] = useState<string>();
-
 
   useEffect(() => {
     setTimeout(
@@ -44,11 +42,8 @@ function Edit() {
     );
   }, [id]);
 
-  console.log("(Edit Component) *anterior a função edit post* project: ", project)
 
   function editPost(project: Project) {
-
-    console.log("(Edit Component) *sobre o fetch da função edit post* project: ", project)
 
 
     fetch(`http://localhost:5000/projects/${project.id}`, {
@@ -67,12 +62,9 @@ function Edit() {
       });
 
 
-    console.log("(Edit Component) *ao final da função edit post* project: ", project)
-
   }
 
   function createService(service: Service, project: Project) {
-    // const lastService = project.services[project.services.length - 1]
     const lastService: Service = service
     lastService.id = uuidv4();
     const lastServiceCost = lastService.cost;
@@ -87,6 +79,7 @@ function Edit() {
     }
 
     project.services.push(lastService)
+    project.services.sort((a,b) => a.date < b.date ? 1 : -1 )
 
 
     // add service cost to project cost total
@@ -107,6 +100,9 @@ function Edit() {
         setMessage("Serviço adicionado!");
         setType("success");
       });
+
+
+
   }
 
   function removeService(id, cost) {
@@ -149,6 +145,7 @@ function Edit() {
   function toggleServiceForm() {
     setShowServiceForm(!showServiceForm);
   }
+
 
 
 
@@ -218,6 +215,7 @@ function Edit() {
                     cost={service.cost}
                     description={service.description}
                     key={service.id}
+                    date={service.date}
                     handleRemove={removeService}
                   />
                 ))}

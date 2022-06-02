@@ -81,6 +81,7 @@ function Projects() {
                         name={item.name}
                         budget={item.budget}
                         category={item.category}
+                        limitDate={item.limitDate}
                         handleRemove={removeProject}
 
                     />

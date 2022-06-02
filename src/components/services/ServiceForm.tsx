@@ -1,6 +1,6 @@
 import css from '../project/ProjectForm.module.css'
 import { useState } from 'react'
-import { Form, Input, Button, InputNumber } from 'antd'
+import { Form, Input, Button, InputNumber, DatePicker, DatePickerProps } from 'antd'
 import { Service } from '../interfaces/Service'
 import { Project } from '../interfaces/Project'
 
@@ -20,10 +20,14 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
             name: dataSubmit.name,
             cost: dataSubmit.cost,
             description: dataSubmit.description,
-            // date: new Date()
+            date: dataSubmit.date
         }
         handleSubmitService(service, projectData)
     }
+
+    const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+        console.log(date, dateString);
+      };
 
     return (<>
         <Form
@@ -35,9 +39,17 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
                 <Input placeholder='Ex. Atualizar banco de dados da NETFLIX' value={services.name} />
             </Form.Item>
 
+
+            <Form.Item
+                name={['date']}
+                rules={[{ required: true, message: 'Especifique a data do serviço!' }]}
+                label="Data do serviço">
+                <DatePicker onChange={onChange} />
+            </Form.Item>
+
             <Form.Item
                 name={['cost']}
-                rules={[{required:true, type: 'number', min: 0, max: projectData.budget }]}
+                rules={[{ required: true, type: 'number', min: 0, max: projectData.budget }]}
                 label="custo do serviço">
                 <InputNumber placeholder=' Ex. 100' value={services.cost} />
             </Form.Item>

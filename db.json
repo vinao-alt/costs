@@ -1,78 +1,66 @@
 {
   "projects": [
     {
-      "name": "projeto infra",
-      "budget": 500,
+      "name": "projeto teste ",
+      "budget": 50000,
       "category": {
-        "id": 1,
-        "name": "Infra"
+        "id": 3,
+        "name": "Design"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 7,
+      "services": [
+        {
+          "id": "99766239-50b4-4986-a418-50eb9d426476",
+          "name": "new name",
+          "cost": 3,
+          "description": "tudo q pode"
+        },
+        {
+          "id": "37955cd3-b5d7-4b06-87e9-8b779bf8f475",
+          "name": "projetinho fellas",
+          "cost": 4,
+          "description": "asdwa"
+        }
+      ],
+      "limitDate": "2022-06-10T17:39:28.406Z",
       "id": 1
     },
     {
-      "name": "projeto desenvolvimento",
-      "budget": 500,
+      "name": "projetinho fellas",
+      "budget": 2,
       "category": {
         "id": 2,
         "name": "Desenvolvimento"
       },
       "cost": 0,
       "services": [],
+      "limitDate": "2022-06-30T17:44:30.903Z",
       "id": 2
     },
     {
-      "name": "projeto design",
-      "budget": 500,
+      "name": "projetinho fellas",
+      "budget": 3,
       "category": {
-        "id": 3,
-        "name": "Design"
+        "id": 1,
+        "name": "Infra"
       },
-      "cost": 0,
-      "services": [],
-      "id": 3
-    },
-    {
-      "name": "projeto planejamento",
-      "budget": 500,
-      "category": {
-        "id": 4,
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 4
-    },
-    {
-      "name": "projeto de teste",
-      "budget": 500,
-      "category": {
-        "id": 4,
-        "name": "Planejamento"
-      },
-      "cost": 411,
+      "cost": 3,
       "services": [
         {
-          "id": "1e4e6097-35b5-4e50-9e12-bad4ce49efd0",
+          "id": "2dde0422-c831-4901-9860-d9dcdc7e399f",
           "name": "projetinho fellas",
-          "cost": 11,
+          "cost": 1,
           "description": "asdwa"
         },
         {
-          "id": "6c3c140e-743e-495c-8658-6e673c048ff6",
+          "id": "9ef4760f-a0cc-4642-84d8-445ab910a967",
           "name": "projetinho fellas",
-          "cost": 0,
-          "description": "asdwa"
-        },
-        {
-          "id": "ddf79faf-9856-44d2-b33c-2b925343e50b",
-          "name": "projetinho fellas 2",
-          "cost": 400,
+          "cost": 2,
           "description": "asdwa"
         }
       ],
-      "id": 5
+      "limitDate": "2022-06-28T17:49:36.609Z",
+      "id": 3
     }
   ],
   "categories": [
