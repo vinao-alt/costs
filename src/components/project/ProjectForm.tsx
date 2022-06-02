@@ -27,8 +27,11 @@ function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
             .catch((err) => console.log(err))
     }, [])
 
+    console.log(categories)
+
     function handleFinish(dataSubmit) {
-        const category: Category = categories.find(category => category.id = dataSubmit.category) as Category;
+        const category : Category = categories.find(category => category.id == dataSubmit.category)!
+        console.log(category)
 
         const project: Project = {
             name: dataSubmit.name,
@@ -41,9 +44,6 @@ function ProjectForm({ handleSubmit, btnText, projectData }: projFormProps) {
         handleSubmit(project)
 
     }
-    //a
-
-    // console.log("(ProjectForm Component) project: ",project)
 
     return (
         <>

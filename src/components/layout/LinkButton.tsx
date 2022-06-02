@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
 import css from './LinkButton.module.css'
+import { Button } from 'antd'
 
-function LinkButton({to, text}) {
+function LinkButton({ to, text }) {
     return (
-        <Link to={to} className={css.btn}>
-            {text}
-        </Link>
+        <Button type='primary' size='large'>
+            <Link to={to}>
+                {text}
+            </Link>
+        </Button>
     )
 }
 

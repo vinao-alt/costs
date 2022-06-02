@@ -15,6 +15,7 @@ import { Project, ProjectUpdate } from "../interfaces/Project";
 import { Service } from "../interfaces/Service";
 import { toast } from "react-toastify";
 import VMasker from 'vanilla-masker'
+import { Button } from 'antd'
 
 function Edit() {
   const { id } = useParams();
@@ -159,9 +160,9 @@ function Edit() {
             {message && <Message type={type} msg={message} />}
             <div className={css.details_container}>
               <h1>{project.name}</h1>
-              <button className={css.btn} onClick={toggleProjectForm}>
+              <Button type="primary" size="large" onClick={toggleProjectForm}>
                 {!showProjectForm ? "Editar Projeto" : "Fechar"}
-              </button>
+              </Button>
               {!showProjectForm ? (
                 <div className={css.project_info}>
                   <p>
@@ -191,9 +192,12 @@ function Edit() {
             </div>
             <div className={css.service_form_container}>
               <h2>Adicione um serviço:</h2>
-              <button className={css.btn} onClick={toggleServiceForm}>
+              {/* <button className={css.btn} onClick={toggleServiceForm}>
                 {!showServiceForm ? "Adicionar Serviço" : "Fechar"}
-              </button>
+              </button> */}
+              <Button type="primary" size="large" onClick={toggleServiceForm}>
+                {!showServiceForm ? "Adicionar Serviço" : "Fechar"}
+              </Button>
               <div className={css.project_info}>
                 {showServiceForm && (
                   <ServiceForm

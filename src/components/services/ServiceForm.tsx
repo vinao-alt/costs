@@ -1,6 +1,6 @@
 import css from '../project/ProjectForm.module.css'
 import { useState } from 'react'
-import { Form, Input, Button, Select } from 'antd'
+import { Form, Input, Button, InputNumber } from 'antd'
 import { Service } from '../interfaces/Service'
 import { Project } from '../interfaces/Project'
 
@@ -37,9 +37,9 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
 
             <Form.Item
                 name={['cost']}
-                rules={[{ required: true, min: 0, max: 99 }]}
+                rules={[{required:true, type: 'number', min: 0, max: projectData.budget }]}
                 label="custo do serviço">
-                <Input type='number' placeholder=' Ex. 100' value={services.cost} />
+                <InputNumber placeholder=' Ex. 100' value={services.cost} />
             </Form.Item>
 
             <Form.Item
