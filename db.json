@@ -13,24 +13,24 @@
       "id": 1
     },
     {
-      "name": "projeto desenvolvimento",
-      "budget": 3,
+      "name": "projeto novinho",
+      "budget": 500,
       "category": {
-        "id": 2,
-        "name": "Desenvolvimento"
+        "id": 1,
+        "name": "Infra"
       },
-      "cost": 3,
+      "cost": 1,
       "services": [
         {
-          "id": "c1033419-6670-40f2-95e4-c4d01a663bea",
-          "name": "projetinho fellas",
-          "cost": 3,
-          "description": "asdwa",
-          "initServiceDate": "2022-06-02T19:24:54.577Z",
-          "limitServiceDate": "2022-09-30T19:24:40.426Z"
+          "id": "4a601145-fd5a-4351-99da-62ac5c4290ed",
+          "name": "new name",
+          "cost": 1,
+          "description": "tudo q pode",
+          "initServiceDate": "2022-06-02T20:04:17.231Z",
+          "limitServiceDate": "2022-06-29T20:04:13.029Z"
         }
       ],
-      "limitDate": "2022-06-30T19:11:30.102Z",
+      "limitDate": "2022-06-30T20:03:56.778Z",
       "id": 2
     }
   ],

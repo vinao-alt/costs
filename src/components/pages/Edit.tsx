@@ -16,7 +16,7 @@ import { Service } from "../interfaces/Service";
 import { toast } from "react-toastify";
 import VMasker from 'vanilla-masker'
 import { Button, Tag } from 'antd'
-import Moment from 'moment'
+import Moment, { parseTwoDigitYear } from 'moment'
 function Edit() {
   const { id } = useParams();
   const [project, setProject] = useState<Project>();
@@ -24,7 +24,7 @@ function Edit() {
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState<string>();
-  const [type, setType] = useState<string>();
+  const [type, setType] = useState<string>()
 
   useEffect(() => {
     setTimeout(
@@ -73,17 +73,21 @@ function Edit() {
     const newCost =
       parseFloat(String(project.cost)) + parseFloat(String(lastServiceCost));
     // maximum value validation
-    if (newCost > parseFloat(String(project.budget))) {
-      setMessage("Orçamento ultrapassado, verifique o valor do serviço!");
-      setType("error");
-      project.services.pop();
-      return false;
-    }
 
-    if (project.limitDate < lastService.limitServiceDate) {
+    if (new Date(project.limitDate) < lastService.limitServiceDate) {
+      if (newCost > parseFloat(String(project.budget))) {
+        setMessage("")
+        setMessage("Orçamento ultrapassado, verifique o valor do serviço!");
+        setType("error");
+        project.services.pop();
+        toast.error("Feche e Insira novamente o custo!")
+        return false;
+      }
+      setMessage("")
       setMessage("A data do serviço não pode ser maior do que a de entrega do projeto!");
       setType("error");
       project.services.pop();
+      toast.error("Feche e Insira novamente a data!")
       return false;
     }
 
@@ -93,6 +97,10 @@ function Edit() {
 
     // add service cost to project cost total
     project.cost = newCost;
+
+    console.log(project.limitDate)
+    console.log(lastService.limitServiceDate)
+
 
     fetch(`http://localhost:5000/projects/${project.id}`, {
       method: "PATCH",
@@ -110,6 +118,9 @@ function Edit() {
         setType("success");
       });
 
+
+    console.log(project.limitDate)
+    console.log(lastService.limitServiceDate)
 
 
   }
@@ -145,6 +156,23 @@ function Edit() {
           setType("success");
         });
     }
+  }
+
+  function editService(name, cost, description, limitServiceDate) {
+    setMessage("");
+
+    if (services != undefined) {
+      const servicesUpdated = project?.services.filter(
+        (service) => service.id
+      );
+
+      <ServiceForm
+        handleSubmitService={createService}
+        btnText="Atualizar Serviço"
+        projectData={project} />
+
+    }
+
   }
 
   function toggleProjectForm() {
@@ -244,6 +272,7 @@ function Edit() {
                     description={service.description}
                     key={service.id}
                     handleRemove={removeService}
+                    handleEdit={editService}
                     initServiceDate={service.initServiceDate}
                     limitServiceDate={service.limitServiceDate}
                   />

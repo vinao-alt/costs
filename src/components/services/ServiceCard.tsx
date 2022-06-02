@@ -1,7 +1,8 @@
-import { BsFillTrashFill } from 'react-icons/bs'
+import { BsFillPencilFill, BsFillTrashFill } from 'react-icons/bs'
 import css from '../project/ProjectCard.module.css'
 import VMasker from 'vanilla-masker'
 import Moment from 'moment'
+import { useState } from 'react'
 
 interface servCard {
     id: number,
@@ -9,15 +10,21 @@ interface servCard {
     cost: number,
     description: string,
     handleRemove: Function,
+    handleEdit:Function,
     initServiceDate: Date,
     limitServiceDate: Date
 }
 
-function ServiceCard({ id, name, cost, description, handleRemove, initServiceDate, limitServiceDate }: servCard) {
+function ServiceCard({ id, name, cost, description, handleRemove, handleEdit, initServiceDate, limitServiceDate}: servCard) {
 
     const remove = (e) => {
         e.preventDefault()
         handleRemove(id, cost)
+    }
+
+    const edit = (e) => {
+        e.preventDefault()
+        handleEdit(name, cost, description, limitServiceDate)
     }
 
     return (
@@ -38,6 +45,10 @@ function ServiceCard({ id, name, cost, description, handleRemove, initServiceDat
                 <button onClick={remove}>
                     <BsFillTrashFill />
                     Excluir
+                </button>
+                <button onClick={edit}>
+                    <BsFillPencilFill/>
+                    Editar
                 </button>
             </div>
         </div >

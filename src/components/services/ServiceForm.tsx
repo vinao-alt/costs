@@ -27,7 +27,7 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
     }
 
     const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-        console.log(date, dateString);
+        // console.log(date, dateString);
       };
 
     return (<>
