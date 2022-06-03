@@ -1,37 +1,25 @@
 {
   "projects": [
     {
-      "name": "projeto infra",
-      "budget": 10,
+      "name": "projeto teste",
+      "budget": 16,
       "category": {
-        "id": 1,
-        "name": "Infra"
+        "id": 4,
+        "name": "Planejamento"
       },
-      "cost": 0,
-      "services": [],
-      "limitDate": "2022-06-30T19:08:24.827Z",
-      "id": 1
-    },
-    {
-      "name": "projeto novinho",
-      "budget": 500,
-      "category": {
-        "id": 1,
-        "name": "Infra"
-      },
-      "cost": 4,
+      "cost": 7,
       "services": [
         {
-          "id": "42e96def-87f6-47ac-ad58-832f6f6caa22",
-          "name": "serviço 1 ",
-          "cost": 4,
-          "description": "tomar cafe",
-          "initServiceDate": "2022-06-03T17:13:14.615Z",
-          "limitServiceDate": "2022-06-30T17:13:09.726Z"
+          "id": "78f02174-4263-4446-bac6-61d4610d8262",
+          "name": "testezinho e pa",
+          "cost": 7,
+          "description": "tudo q pode",
+          "initServiceDate": "2022-06-03T20:42:52.802Z",
+          "limitServiceDate": "2022-06-07T20:42:47.583Z"
         }
       ],
-      "limitDate": "2022-06-30T20:03:56.778Z",
-      "id": 2
+      "limitDate": "2022-06-30T20:42:21.981Z",
+      "id": 1
     }
   ],
   "categories": [

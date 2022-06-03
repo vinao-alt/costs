@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Project } from "../interfaces/Project";
-
 import ProjectForm from "../project/ProjectForm";
 import css from "./NewProjects.module.css";
 
