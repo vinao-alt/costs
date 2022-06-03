@@ -6,7 +6,7 @@ import { Project } from '../interfaces/Project'
 
 interface servFormProps {
     handleSubmitService: Function,
-    btnText: string,
+    btnText?: string,
     projectData?
 }
 
@@ -27,11 +27,12 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
     }
 
     const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-        // console.log(date, dateString);
-      };
+        console.log(date, dateString);
+    };
 
     return (<>
         <Form
+            layout='vertical'
             onFinish={handleFinish}>
             <Form.Item
                 name={['name']}
@@ -50,7 +51,7 @@ function ServiceForm({ handleSubmitService, btnText, projectData }: servFormProp
 
             <Form.Item
                 name={['cost']}
-                rules={[{ required: true, type: 'number', min: 0, max: projectData.budget }]}
+                rules={[{ required: true, type: 'number', min: 0, max: 5000 }]}
                 label="custo do serviço">
                 <InputNumber placeholder=' Ex. 100' value={services.cost} />
             </Form.Item>

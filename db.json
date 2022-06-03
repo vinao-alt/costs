@@ -19,15 +19,15 @@
         "id": 1,
         "name": "Infra"
       },
-      "cost": 1,
+      "cost": 4,
       "services": [
         {
-          "id": "4a601145-fd5a-4351-99da-62ac5c4290ed",
-          "name": "new name",
-          "cost": 1,
-          "description": "tudo q pode",
-          "initServiceDate": "2022-06-02T20:04:17.231Z",
-          "limitServiceDate": "2022-06-29T20:04:13.029Z"
+          "id": "42e96def-87f6-47ac-ad58-832f6f6caa22",
+          "name": "serviço 1 ",
+          "cost": 4,
+          "description": "tomar cafe",
+          "initServiceDate": "2022-06-03T17:13:14.615Z",
+          "limitServiceDate": "2022-06-30T17:13:09.726Z"
         }
       ],
       "limitDate": "2022-06-30T20:03:56.778Z",

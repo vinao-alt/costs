@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import VMasker from 'vanilla-masker'
 import { Button, Tag } from 'antd'
 import Moment, { parseTwoDigitYear } from 'moment'
+import ModalEdit from "./ModalEdit";
 function Edit() {
   const { id } = useParams();
   const [project, setProject] = useState<Project>();
@@ -25,6 +26,17 @@ function Edit() {
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState<string>();
   const [type, setType] = useState<string>()
+
+  //para o modal
+  const [modal, setModal] = useState(false);
+
+  const openModal = () => {
+    setModal(true)
+  }
+
+  const closeModal = () => {
+    setModal(false)
+  }
 
   useEffect(() => {
     setTimeout(
@@ -43,6 +55,20 @@ function Edit() {
     );
   }, [id]);
 
+  const editService = () => {
+    fetch(`http://localhost:5000/projects/${project?.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(project),
+
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setServices(data.services);
+      });
+  }
 
   function editPost(project: Project) {
 
@@ -158,23 +184,6 @@ function Edit() {
     }
   }
 
-  function editService(name, cost, description, limitServiceDate) {
-    setMessage("");
-
-    if (services != undefined) {
-      const servicesUpdated = project?.services.filter(
-        (service) => service.id
-      );
-
-      <ServiceForm
-        handleSubmitService={createService}
-        btnText="Atualizar Serviço"
-        projectData={project} />
-
-    }
-
-  }
-
   function toggleProjectForm() {
     setShowProjectForm(!showProjectForm);
   }
@@ -196,7 +205,6 @@ function Edit() {
     }
     return cor
   }
-
 
 
   return (
@@ -245,9 +253,6 @@ function Edit() {
             </div>
             <div className={css.service_form_container}>
               <h2>Adicione um serviço:</h2>
-              {/* <button className={css.btn} onClick={toggleServiceForm}>
-                {!showServiceForm ? "Adicionar Serviço" : "Fechar"}
-              </button> */}
               <Button type="primary" size="large" onClick={toggleServiceForm}>
                 {!showServiceForm ? "Adicionar Serviço" : "Fechar"}
               </Button>
@@ -272,7 +277,7 @@ function Edit() {
                     description={service.description}
                     key={service.id}
                     handleRemove={removeService}
-                    handleEdit={editService}
+                    handleEdit={openModal}
                     initServiceDate={service.initServiceDate}
                     limitServiceDate={service.limitServiceDate}
                   />
@@ -282,6 +287,14 @@ function Edit() {
               )}
             </Container>
           </Container>
+          <ModalEdit
+            visible={modal}
+            abrirModal={openModal}
+            fecharModal={closeModal}
+            onOk={editService}
+            projectData={project}
+            handleSub={editService}
+          />
         </div>
       ) : (
         <Loading />

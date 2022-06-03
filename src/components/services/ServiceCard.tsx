@@ -10,7 +10,7 @@ interface servCard {
     cost: number,
     description: string,
     handleRemove: Function,
-    handleEdit:Function,
+    handleEdit: Function,
     initServiceDate: Date,
     limitServiceDate: Date
 }
@@ -42,13 +42,13 @@ function ServiceCard({ id, name, cost, description, handleRemove, handleEdit, in
 
             <p>{description}</p>
             <div className={css.project_card_actions}>
-                <button onClick={remove}>
-                    <BsFillTrashFill />
-                    Excluir
-                </button>
                 <button onClick={edit}>
                     <BsFillPencilFill/>
                     Editar
+                </button>
+                <button onClick={remove}>
+                    <BsFillTrashFill />
+                    Excluir
                 </button>
             </div>
         </div >
